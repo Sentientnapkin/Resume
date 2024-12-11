@@ -51,7 +51,14 @@ const Projects: React.FC = () => {
         Projects
       </motion.h2>
       {projects.map((project, index) => (
-        <ProjectCard key={index} {...project} />
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.1 }}
+        >
+          <ProjectCard key={index} {...project} />
+        </motion.div>
       ))}
     </div>
   );

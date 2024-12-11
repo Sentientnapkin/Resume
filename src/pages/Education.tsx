@@ -10,6 +10,10 @@ const Education: React.FC = () => {
     "Discrete Mathematics and Probability Theory"
   ];
 
+  const clubs = [
+    "UpSync Consulting"
+  ]
+
   return (
     <div className="container py-24">
       <motion.h2
@@ -21,8 +25,8 @@ const Education: React.FC = () => {
       </motion.h2>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{opacity: 0, y: 20}}
+        animate={{opacity: 1, y: 0}}
         className="rounded-xl bg-surface/50 backdrop-blur-sm border border-white/10 p-8 mb-8"
       >
         <div className="flex">
@@ -41,12 +45,28 @@ const Education: React.FC = () => {
             <motion.div
               key={index}
               initial={{opacity: 0, x: -20}}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: index * 0.1}}
               className="flex items-center gap-2"
             >
-              <div className="w-2 h-2 rounded-full bg-primary" />
+              <div className="w-2 h-2 rounded-full bg-primary"/>
               <span>{course}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        <h4 className="text-lg font-semibold mb-4 mt-8">Clubs & Involvements</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {clubs.map((club, index) => (
+            <motion.div
+              key={index}
+              initial={{opacity: 0, x: -20}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: index * 0.1 + courses.length * 0.1}}
+              className="flex items-center gap-2"
+            >
+              <div className="w-2 h-2 rounded-full bg-primary"/>
+              <a href={"https://www.upsyncberkeley.com/"}>{club}</a>
             </motion.div>
           ))}
         </div>

@@ -25,15 +25,22 @@ const Education: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         className="rounded-xl bg-surface/50 backdrop-blur-sm border border-white/10 p-8 mb-8"
       >
-        <h3 className="text-2xl font-bold mb-2">University of California, Berkeley</h3>
-        <p className="text-primary mb-6">B.S. Electrical Engineering and Computer Science</p>
+        <div className="flex">
+          <div className="mr-auto">
+            <h3 className="text-2xl font-bold mb-2">University of California, Berkeley</h3>
+            <p className="text-primary mb-6">B.S. Electrical Engineering and Computer Science</p>
+          </div>
+
+          <img src={"./Berkeley.png"} alt="UC Berkeley" className="w-24 h-24 rounded-full mb-4 ml-auto mr-20"/>
+        </div>
+
 
         <h4 className="text-lg font-semibold mb-4">Relevant Coursework</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {courses.map((course, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{opacity: 0, x: -20}}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
               className="flex items-center gap-2"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import {FaEnvelope, FaGithub, FaLinkedin} from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-blue-400 transition p-2 rounded-full hover:bg-blue-400/10"
             >
-              <FaGithub className="w-5 h-5" />
+              <FaGithub className="w-5 h-5"/>
             </a>
             <a
               href="https://www.linkedin.com/in/sebastian-vargas-4a083323a/" // Replace with your LinkedIn URL
@@ -68,7 +68,13 @@ const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-blue-400 transition p-2 rounded-full hover:bg-blue-400/10"
             >
-              <FaLinkedin className="w-5 h-5" />
+              <FaLinkedin className="w-5 h-5"/>
+            </a>
+            <a
+              href="mailto:sebvargas@berkeley.edu" // Email link
+              className="text-gray-300 hover:text-blue-400 transition p-2 rounded-full hover:bg-blue-400/10"
+            >
+              <FaEnvelope className="w-5 h-5"/>
             </a>
           </div>
         </div>

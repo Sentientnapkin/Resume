@@ -14,7 +14,7 @@ const Home: React.FC = () => {
             Sebastian Vargas
           </h1>
           <p className="text-2xl text-text-secondary mb-8">
-            EECS Student at UC Berkeley | Full-Stack Developer
+            EECS Student at UC Berkeley
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
@@ -27,15 +27,6 @@ const Home: React.FC = () => {
                 {skill}
               </motion.div>
             ))}
-          </div>
-
-          <div className="flex justify-center gap-6">
-            <button className="px-6 py-3 rounded-lg bg-primary hover:bg-primary-dark transition-colors">
-              View Projects
-            </button>
-            <button className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition-colors">
-              Contact Me
-            </button>
           </div>
         </motion.div>
       </div>

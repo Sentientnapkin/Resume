@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Brand Name */}
           <Link
-            to="/"
+            to="/Resume/"
             className="text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 text-transparent bg-clip-text hover:opacity-80 transition"
           >
             Sebastian Vargas
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
             {['Home', 'Experience', 'Projects', 'Education', 'Blogs'].map((item) => (
               <Link
                 key={item}
-                to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                to={item === 'Home' ? '/Resume/' : `/Resume/${item.toLowerCase()}`}
                 className={`relative text-sm font-medium transition-colors ${
                   location.pathname === (item === 'Home' ? '/' : `/${item.toLowerCase()}`)
                     ? 'text-blue-400'

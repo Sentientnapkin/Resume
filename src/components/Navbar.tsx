@@ -38,11 +38,11 @@ const Navbar: React.FC = () => {
                 key={item}
                 to={item === 'Home' ? '/Resume/' : `/Resume/${item.toLowerCase()}`}
                 className={`relative text-sm font-medium transition-colors ${
-                  location.pathname === (item === 'Home' ? '/' : `/${item.toLowerCase()}`)
+                  location.pathname === (item === 'Home' ? '/Resume/' : `/Resume/${item.toLowerCase()}`)
                     ? 'text-blue-400'
                     : 'text-gray-300 hover:text-blue-400'
                 } after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-blue-400 after:transition-all ${
-                  location.pathname === (item === 'Home' ? '/' : `/${item.toLowerCase()}`)
+                  location.pathname === (item === 'Home' ? '/Resume/' : `/Resume/${item.toLowerCase()}`)
                     ? 'after:w-full'
                     : 'after:w-0 hover:after:w-full'
                 }`}

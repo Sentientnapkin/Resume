@@ -3,15 +3,34 @@ import { motion } from 'framer-motion';
 
 const Education: React.FC = () => {
   const courses = [
-    "Structure and Interpretation of Computer Programs",
-    "Designing Information Devices and Systems",
-    "Introduction to Circuits & Devices",
-    "Data Structures",
-    "Discrete Mathematics and Probability Theory"
+    {
+      course: "Structure and Interpretation of Computer Programs",
+      link: "https://cs61a.org/"
+    },
+    {
+      course: "Designing Information Devices and Systems",
+      link: "https://eecs16a.org/"
+    },
+    {
+      course: "Introduction to Circuits & Devices",
+      link: "https://eecs16b.org/#exams"
+    },
+    {
+      course: "Data Structures",
+      link: "https://sp24.datastructur.es/"
+    },
+    {
+      course: "Discrete Mathematics and Probability Theory",
+      link: "https://www.eecs70.org/"
+    }
   ];
 
   const clubs = [
-    "UpSync Consulting"
+    {
+      name: "UpSync (Technical Consultant)",
+      image: "./UpsyncLogo.png",
+      link: "https://www.upsyncberkeley.com/"
+    }
   ]
 
   return (
@@ -31,8 +50,9 @@ const Education: React.FC = () => {
       >
         <div className="flex">
           <div className="mr-auto">
-            <h3 className="text-2xl font-bold mb-2">University of California, Berkeley</h3>
-            <p className="text-primary mb-6">B.S. Electrical Engineering and Computer Science</p>
+            <h3 className="text-3xl font-bold mb-2">University of California, Berkeley</h3>
+            <p className="text-primary mb-2">B.S. Electrical Engineering and Computer Science</p>
+            <p className="text-primary mb-6">Graduating 2028</p>
           </div>
 
           <img src={"./Berkeley.png"} alt="UC Berkeley" className="w-24 h-24 rounded-full mb-4 ml-auto mr-20"/>
@@ -50,7 +70,7 @@ const Education: React.FC = () => {
               className="flex items-center gap-2"
             >
               <div className="w-2 h-2 rounded-full bg-primary"/>
-              <span>{course}</span>
+              <a href={course.link}>{course.course}</a>
             </motion.div>
           ))}
         </div>
@@ -66,7 +86,10 @@ const Education: React.FC = () => {
               className="flex items-center gap-2"
             >
               <div className="w-2 h-2 rounded-full bg-primary"/>
-              <a href={"https://www.upsyncberkeley.com/"}>{club}</a>
+              <a className="flex items-center" href={club.link}>
+                <img src={club.image} alt={club.name} className="w-8 h-8 rounded-full mr-4"/>
+                <span className="text-lg">{club.name}</span>
+              </a>
             </motion.div>
           ))}
         </div>

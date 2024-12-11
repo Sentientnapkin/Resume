@@ -10,9 +10,9 @@ const Projects: React.FC = () => {
       location: "Pleasanton, California",
       github: "https://github.com/ResourcifyORG/ResourcifyApp.git",
       description: [
-        "Collaborated with Muslim Community Center for refugee support",
-        "Developed React Native application for housing and resource information",
-        "Conducted extensive research for information accuracy"
+        "Collaborated with Muslim Community Center to identify key challenges faced by refugees entering the country",
+        "Developed a React Native application providing information on housing, schools, and local resources in the Bay Area",
+        "Conducted extensive research to ensure accuracy and relevance of information provided"
       ],
       technologies: ["React Native", "TypeScript", "Firebase"]
     },
@@ -22,8 +22,8 @@ const Projects: React.FC = () => {
       location: "Danville, California",
       github: "https://github.com/Sentientnapkin/note-sharing.git",
       description: [
-        "Designed school-wide note-sharing platform",
-        "Implemented user authentication and database management"
+        "Designed and implemented a school-wide note-sharing platform using React for frontend and Firebase for backend",
+        "Integrated user authentication and database writing capabilities to ensure secure and efficient data management"
       ],
       technologies: ["React", "Firebase", "TypeScript"]
     },
@@ -55,7 +55,7 @@ const Projects: React.FC = () => {
           key={index}
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.1 }}
+          transition={{ delay: index * 0.2 }}
         >
           <ProjectCard key={index} {...project} />
         </motion.div>

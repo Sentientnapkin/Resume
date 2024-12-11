@@ -23,7 +23,7 @@ const Experience: React.FC = () => {
       location: "Remote",
       points: [
         "Tutored 20 students from underrepresented backgrounds",
-        "Wrote detailed progress reports",
+        "Wrote detailed progress reports to track and ensure genuine growth in students' learning outcomes",
         "Taught Python, C#, and JavaScript"
       ]
     },
@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
       date: "Fall 2023",
       location: "Berkeley, California",
       points: [
-        "Consulted for AMD to support the legal team",
+        "Consulted in a team for AMD to support the legal team by streamlining access to company data for all legal processes",
         "Developed frontend using React",
         "Built backend infrastructure using Microsoft Azure and APIs"
       ]

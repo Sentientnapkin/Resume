@@ -1,8 +1,8 @@
-import React from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
 
 const Projects: React.FC = () => {
+
   const projects = [
     {
       title: "Resourcify",
@@ -38,6 +38,29 @@ const Projects: React.FC = () => {
         "Made presenting such a complex topic significantly easier for biology teachers since they could present my program"
       ],
       technologies: ["Python", "Matplotlib", "PyGame"]
+    },
+    {
+      title: "Data Structures and Algorithms",
+      duration: "Sep 2022 - June 2023",
+      location: "Danville, California",
+      github: "https://github.com/Sentientnapkin/DataStructuresAndAlgorithms.git",
+      description: [
+        "Created implementations of various data structures and algorithms in Java",
+        "Example data structures include linked lists, stacks, queues, and trees",
+        "Example algorithms include sorting, searching, and graph traversal"
+      ],
+      technologies: ["Java", "Data Structures", "Algorithms"]
+    },
+    {
+      title: "NFL Fantasy Predictor",
+      duration: "Summer 2024",
+      location: "Pleasanton, California",
+      github: "https://github.com/Sentientnapkin/NFL_Model.git",
+      description: [
+        "Created a machine learning model to predict fantasy football scores for NFL players",
+        "Utilized player and team statistics to train the model",
+      ],
+      technologies: ["Python", "Matplotlib", "PyGame"]
     }
   ];
 
@@ -55,7 +78,9 @@ const Projects: React.FC = () => {
           key={index}
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.2 }}
+          transition={{
+            delay: 0,
+          }}
         >
           <ProjectCard key={index} {...project} />
         </motion.div>

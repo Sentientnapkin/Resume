@@ -11,7 +11,7 @@ const Experience: React.FC = () => {
       location: "Ann Arbor, Michigan",
       points: [
         "Accepted to this highly competitive intensive four-week summer residential entrepreneurship program",
-        "Launched a start-up called wear that generates outfits and promotes upcycling for users",
+        "Launched a start-up called Wear that generates outfits and promotes up-cycling among users",
         "Conducted market research, made balance sheets, prototyped, built mobile application in React Native that uses AI, managed backend, and trained own image classification model",
         "Pitched to a panel of successful entrepreneurs showcasing our business model and market analysis"
       ]

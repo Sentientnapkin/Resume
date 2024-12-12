@@ -61,28 +61,20 @@ const Education: React.FC = () => {
 
         <h4 className="text-lg font-semibold mb-4">Relevant Coursework</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {courses.map((course, index) => (
-            <motion.div
-              key={index}
-              initial={{opacity: 0, x: -20}}
-              animate={{opacity: 1, x: 0}}
-              transition={{delay: index * 0.1}}
+          {courses.map((course) => (
+            <div
               className="flex items-center gap-2"
             >
               <div className="w-2 h-2 rounded-full bg-primary"/>
               <a href={course.link}>{course.course}</a>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         <h4 className="text-lg font-semibold mb-4 mt-8">Clubs & Involvements</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {clubs.map((club, index) => (
-            <motion.div
-              key={index}
-              initial={{opacity: 0, x: -20}}
-              animate={{opacity: 1, x: 0}}
-              transition={{delay: index * 0.1 + courses.length * 0.1}}
+          {clubs.map((club) => (
+            <div
               className="flex items-center gap-2"
             >
               <div className="w-2 h-2 rounded-full bg-primary"/>
@@ -90,7 +82,7 @@ const Education: React.FC = () => {
                 <img src={club.image} alt={club.name} className="w-8 h-8 rounded-full mr-4"/>
                 <span className="text-lg">{club.name}</span>
               </a>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>

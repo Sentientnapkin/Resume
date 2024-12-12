@@ -60,7 +60,7 @@ const Projects: React.FC = () => {
         "Created a machine learning model to predict fantasy football scores for NFL players",
         "Utilized player and team statistics to train the model",
       ],
-      technologies: ["Python", "Matplotlib", "PyGame"]
+      technologies: ["Python", "Matplotlib", "Pygame"]
     }
   ];
 

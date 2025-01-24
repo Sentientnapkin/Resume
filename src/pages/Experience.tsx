@@ -30,7 +30,7 @@ const Experience: React.FC = () => {
     {
       company: "AMD",
       title: "Contractor Consultant",
-      date: "Fall 2023",
+      date: "Fall 2024",
       location: "Berkeley, California",
       points: [
         "Consulted in a team for AMD to support the legal team by streamlining access to company data for all legal processes",

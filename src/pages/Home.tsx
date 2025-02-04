@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           className="sticky top-0 justify-center flex flex-col items-center space-y-6"
         >
           <img
-            src="./Headshot.jpg" // Replace with your image path
+            src="../assets/Headshot.jpg"
             alt="Sebastian Vargas"
             className="w-60 h-60 rounded-full object-cover border-4 border-blue-400"
           />

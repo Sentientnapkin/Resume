@@ -14,11 +14,11 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
         <Navbar />
         <Routes>
-          <Route path="/Resume/" element={<Home />} />
-          <Route path="/Resume/experience" element={<Experience />} />
-          <Route path="/Resume/projects" element={<Projects />} />
-          <Route path="/Resume/education" element={<Education />} />
-          <Route path="/Resume/blogs" element={<Blogs />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/blogs" element={<Blogs />} />
         </Routes>
       </div>
     </BrowserRouter>

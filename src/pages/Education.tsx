@@ -17,17 +17,29 @@ const Education: React.FC = () => {
     },
     {
       course: "Data Structures",
-      link: "https://sp24.datastructur.es/"
+      link: "https://sp25.datastructur.es/"
     },
     {
       course: "Discrete Mathematics and Probability Theory",
       link: "https://www.eecs70.org/"
+    },
+    {
+      course: "Great Ideas in Computer Architecture (Machine Structures)",
+      link: "https://cs61c.org/"
+    },
+    {
+      course: "Efficient Algorithms and Intractable Problems",
+      link: "https://cs170.org/"
+    },
+    {
+      course: "Microelectronic Devices and Circuits",
+      link: "https://www2.eecs.berkeley.edu/Courses/EE105/"
     }
   ];
 
   const clubs = [
     {
-      name: "UpSync (Technical Consultant)",
+      name: "UpSync (Project Manager)",
       image: "./UpsyncLogo.png",
       link: "https://www.upsyncberkeley.com/"
     }

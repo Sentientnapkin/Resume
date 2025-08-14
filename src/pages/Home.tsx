@@ -88,10 +88,10 @@ const Home: React.FC = () => {
             <h3 className="text-xl font-semibold mb-4 text-blue-400">Technical Skills</h3>
             <div className="flex flex-wrap gap-x-4 gap-y-4">
               {[
+                'Java',
                 'Typescript',
                 'Python',
                 'React/React Native',
-                'Java',
                 'SQL',
                 'C++',
                 'Firebase',

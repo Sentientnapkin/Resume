@@ -6,7 +6,7 @@ const EmailButton: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const copyEmailToClipboard = () => {
-    navigator.clipboard.writeText('sebvargas@berkeley.edu').then(() => {
+    navigator.clipboard.writeText('18sebvargas@gmail.com').then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
     });

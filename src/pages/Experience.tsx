@@ -37,7 +37,29 @@ const Experience: React.FC = () => {
         "Developed frontend using React",
         "Built backend infrastructure using Microsoft Azure and APIs"
       ]
-    }
+    },
+    {
+      company: "Lenovo",
+      title: "Contractor Consultant",
+      date: "Spring 2025",
+      location: "Berkeley, California",
+      points: [
+        "Collaborated with a cross-functional team on a Lenovo case study evaluating AI integration in software development",
+        "Developed a lecture companion application implementing both traditional and AI-assisted workflows, demonstrating optimal productivity through a balanced hybrid approach"
+      ]
+    },
+    {
+      company: "Google",
+      title: "Associate Software Developer Intern",
+      date: "Summer 2025",
+      location: "New York, New York",
+      points: [
+        "Developed change history functionality for Google's internal performance management and promotion system, enabling users to view and revert modifications to quarterly expectations and tasks with full audit trail capabilities",
+        "Owned the full lifecycle with end-to-end implementation, including building APIs to pull change history from google internal datastores and developing reusable front-end components to display the information to users",
+        "Implemented comprehensive testing suite including unit, integration, accessibility, load, and bug testing",
+        "Established role based access control to restrict access to authenticated and authorized users to safeguard sensitive employee information regarding their performance at Google"
+      ]
+    },
   ];
 
   return (

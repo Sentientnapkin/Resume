@@ -39,7 +39,7 @@ const Education: React.FC = () => {
 
   const clubs = [
     {
-      name: "UpSync (Project Manager)",
+      name: "UpSync (Project Manager & Vice President of Projects)",
       image: "./UpsyncLogo.png",
       link: "https://www.upsyncberkeley.com/"
     }

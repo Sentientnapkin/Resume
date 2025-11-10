@@ -15,7 +15,7 @@ const Education: React.FC = () => {
   const exploring = [
     "CS 162 • Operating Systems",
     "CS 161 • Computer Security",
-    "CS 194 - 198 • Networks: Models, Processes & Algorithms"
+    "CS 194-198 • Networks: Models, Processes & Algorithms"
   ];
 
   return (

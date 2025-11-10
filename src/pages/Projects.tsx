@@ -1,115 +1,181 @@
-import ProjectCard from '../components/ProjectCard';
 import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Projects: React.FC = () => {
 
-  const projects = [
+  const featuredProjects = [
     {
-      title: "CS61CPU - RISC-V Processor",
-      duration: "Fall 2024",
+      title: "CS61CPU",
+      subtitle: "RISC-V Processor from Scratch",
+      description: "Built a functional CPU in Logisim that executes real RISC-V instructions. Implemented complete ISA with control logic, ALU, memory management, and register file.",
       link: "https://cs61c.org/fa25/projects/proj3/",
-      description: [
-        "Built a functional CPU in Logisim capable of executing actual RISC-V instructions from the ground up",
-        "Implemented complete instruction set architecture including control logic, ALU operations, memory management, and register file",
-        "Developed hardware support for partial loads/stores and debugging capabilities to run real assembly programs",
-        "Gained deep understanding of computer architecture, digital logic design, and low-level hardware-software interaction"
-      ],
-      technologies: ["RISC-V", "Logisim", "Computer Architecture", "Digital Logic", "Hardware Design"]
+      tags: ["RISC-V", "Digital Logic", "Hardware"]
     },
     {
-      title: "CS61Classify - Assembly ML Classifier",
-      duration: "Fall 2024",
+      title: "RegWatch AI",
+      subtitle: "Enterprise RAG System",
+      description: "Architecting regulatory intelligence platform with AWS Bedrock. RAG solution reduces manual research by 75% through automated document processing.",
+      tags: ["AWS", "RAG", "AI/ML"]
+    },
+  ];
+
+  const otherProjects = [
+    {
+      title: "CS61Classify",
+      description: "ML classifier in pure RISC-V assembly. Handwritten digit recognition with matrix ops and neural network inference.",
       link: "https://cs61c.org/fa25/projects/proj2/",
-      description: [
-        "Wrote RISC-V assembly code to classify handwritten digits using machine learning algorithms",
-        "Implemented calling conventions, heap memory management, and file I/O operations entirely in assembly",
-        "Developed matrix multiplication and neural network inference routines optimized for RISC-V architecture",
-        "Integrated comprehensive testing and memory safety verification using Venus debugger"
-      ],
-      technologies: ["RISC-V Assembly", "Machine Learning", "Memory Management", "File I/O"]
+      tags: ["Assembly", "ML"]
     },
     {
       title: "Resourcify",
-      duration: "Sep 2022 - May 2023",
-      location: "Pleasanton, California",
+      description: "React Native app helping refugees navigate resources in the Bay Area. Built with community centers.",
       github: "https://github.com/ResourcifyORG/ResourcifyApp.git",
-      description: [
-        "Collaborated with Muslim Community Center to identify key challenges faced by refugees entering the country",
-        "Developed a React Native application providing information on housing, schools, and local resources in the Bay Area",
-        "Conducted extensive research to ensure accuracy and relevance of information provided"
-      ],
-      technologies: ["React Native", "TypeScript", "Firebase"]
+      tags: ["React Native", "Firebase"]
     },
     {
       title: "Hadrian's Library",
-      duration: "Spring 2024",
-      location: "Danville, California",
+      description: "School-wide note-sharing platform with auth and real-time updates.",
       github: "https://github.com/Sentientnapkin/note-sharing.git",
-      description: [
-        "Designed and implemented a school-wide note-sharing platform using React for frontend and Firebase for backend",
-        "Integrated user authentication and database writing capabilities to ensure secure and efficient data management"
-      ],
-      technologies: ["React", "Firebase", "TypeScript"]
+      tags: ["React", "Firebase"]
     },
     {
-      title: "Microevolutionary Processes Simulator",
-      duration: "Spring 2023",
-      location: "Danville, California",
+      title: "Evolution Simulator",
+      description: "Visualization tool for microevolutionary processes, built for biology curriculum.",
       github: "https://github.com/Sentientnapkin/MicroevolutionaryProcesses.git",
-      description: [
-        "Developed a python program that visualizes the processes that lead to microevolution for my school's biology curriculum",
-        "Created individual algorithms for each microevolutionary process and built the UI with matplotlib",
-        "Made presenting such a complex topic significantly easier for biology teachers since they could present my program"
-      ],
-      technologies: ["Python", "Matplotlib", "PyGame"]
+      tags: ["Python", "Matplotlib"]
     },
     {
-      title: "Data Structures and Algorithms",
-      duration: "Sep 2022 - June 2023",
-      location: "Danville, California",
-      github: "https://github.com/Sentientnapkin/DataStructuresAndAlgorithms.git",
-      description: [
-        "Created implementations of various data structures and algorithms in Java",
-        "Example data structures include linked lists, stacks, queues, and trees",
-        "Example algorithms include sorting, searching, and graph traversal"
-      ],
-      technologies: ["Java", "Data Structures", "Algorithms"]
-    },
-    {
-      title: "NFL Fantasy Predictor",
-      duration: "Summer 2024",
-      location: "Pleasanton, California",
+      title: "NFL Predictor",
+      description: "ML model predicting fantasy football scores using player and team statistics.",
       github: "https://github.com/Sentientnapkin/NFL_Model.git",
-      description: [
-        "Created a machine learning model to predict fantasy football scores for NFL players",
-        "Utilized player and team statistics to train the model",
-      ],
-      technologies: ["Python", "Matplotlib", "scikit-learn"]
+      tags: ["Python", "scikit-learn"]
+    },
+    {
+      title: "Data Structures",
+      description: "Java implementations of core DS&A: trees, graphs, sorting algorithms.",
+      github: "https://github.com/Sentientnapkin/DataStructuresAndAlgorithms.git",
+      tags: ["Java", "Algorithms"]
     }
   ];
 
   return (
-    <div className="container py-24">
-      <motion.h2
-        initial={{opacity: 0, x: -20}}
-        animate={{opacity: 1, x: 0}}
-        className="text-4xl font-bold mb-12 font-mono text-cyber-green"
-      >
-        <span className="text-gray-500">{'>'}</span> projects.list()
-      </motion.h2>
-      <div className="space-y-6">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: index * 0.1,
-            }}
+    <div className="min-h-screen py-24 px-8 md:px-16">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-cyber-green">Things I've</span>
+            <br />
+            <span className="text-gray-400">brought to life</span>
+          </h2>
+          <p className="text-gray-500 font-mono text-sm">$ git log --all --oneline</p>
+        </motion.div>
+
+        {/* Featured Projects - Bento Box Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+          {featuredProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyber-green to-cyber-cyan rounded-lg opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+              <div className="relative bg-card-bg rounded-lg p-8 h-full border border-cyber-green/30 group-hover:border-cyber-green/60 transition-all">
+                <h3 className="text-2xl font-bold mb-2 text-cyber-green">{project.title}</h3>
+                <p className="text-sm text-cyber-cyan font-mono mb-4">{project.subtitle}</p>
+                <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 bg-dark-surface border border-terminal-green/30 text-terminal-green rounded-full text-xs font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-cyber-green hover:text-terminal-green transition-colors font-mono text-sm"
+                  >
+                    <FaExternalLinkAlt className="text-xs" />
+                    <span>Learn more</span>
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Other Projects - Compact Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {otherProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-dark-surface/50 border border-gray-800 rounded-lg p-6 hover:border-cyber-green/30 transition-all group"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-lg font-semibold group-hover:text-cyber-green transition-colors">{project.title}</h3>
+                {(project.github || project.link) && (
+                  <a
+                    href={project.github || project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-cyber-green transition-colors"
+                  >
+                    {project.github ? <FaGithub /> : <FaExternalLinkAlt className="text-sm" />}
+                  </a>
+                )}
+              </div>
+
+              <p className="text-sm text-gray-400 mb-4">{project.description}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 bg-dark-bg text-gray-500 rounded text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-gray-500 font-mono text-sm mb-4">More on GitHub</p>
+          <a
+            href="https://github.com/Sentientnapkin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-cyber-green/50 text-cyber-green rounded hover:bg-cyber-green/10 transition-all font-mono text-sm"
           >
-            <ProjectCard {...project} />
-          </motion.div>
-        ))}
+            <FaGithub />
+            <span>@Sentientnapkin</span>
+          </a>
+        </motion.div>
       </div>
     </div>
   );

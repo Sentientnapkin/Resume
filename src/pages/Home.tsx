@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {motion, useAnimation} from 'framer-motion';
-import { FaRobot, FaShieldAlt, FaLock, FaMicrochip } from 'react-icons/fa';
+import {motion} from 'framer-motion';
 
 const Home: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [displayText, setDisplayText] = useState('');
-  const controls = useAnimation();
   const fullText = 'Sebastian Vargas';
 
-  // Update scroll position
+  // Track mouse for parallax
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX - window.innerWidth / 2) / 50,
+        y: (e.clientY - window.innerHeight / 2) / 50,
+      });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   // Terminal typing effect
@@ -31,230 +32,171 @@ const Home: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Control animation based on scroll position
-  useEffect(() => {
-    controls.start({
-      opacity: Math.max(1 - scrollY / 400, 0),
-      transition: { duration: 0.5 }
-    });
-  }, [scrollY, controls]);
-
-
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-dark-bg text-white">
-      {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center scanline">
-        <motion.div
-          animate={controls}
-          className="sticky top-0 justify-center flex flex-col items-center space-y-6"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-cyber-green/20 blur-xl animate-glow"></div>
-            <img
-              src="./Headshot.jpg"
-              alt="Sebastian Vargas"
-              className="relative w-60 h-60 rounded-full object-cover border-4 border-cyber-green shadow-[0_0_30px_rgba(16,185,129,0.3)]"
-            />
-          </div>
+      {/* Hero Section - Asymmetric Layout */}
+      <section className="relative min-h-screen flex items-center px-8 md:px-16 py-24">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          <div className="space-y-2">
-            <div className="font-mono text-cyber-green text-sm mb-2">
-              <span className="text-gray-500">{'>'}</span> initializing_system...
-            </div>
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-cyber-green via-cyber-cyan to-terminal-green text-transparent bg-clip-text mb-4 glow-text">
-              {displayText}<span className={displayText === fullText ? 'terminal-cursor' : ''}></span>
-            </h1>
-            <div className="font-mono text-cyber-cyan text-sm">
-              <span className="text-gray-500">{'>'}</span> role: <span className="text-white">EECS @ UC Berkeley</span>
-            </div>
-            <div className="font-mono text-cyber-cyan text-sm">
-              <span className="text-gray-500">{'>'}</span> gpa: <span className="text-terminal-green font-bold">4.00/4.00</span>
-            </div>
-            <div className="font-mono text-cyber-cyan text-sm">
-              <span className="text-gray-500">{'>'}</span> focus: <span className="text-cyber-orange">Robotics | Computer Security</span>
-            </div>
-          </div>
-
-          <div className="flex gap-6 mt-8">
-            <div className="group relative">
-              <div className="absolute inset-0 bg-cyber-green/20 rounded-lg blur group-hover:bg-cyber-green/30 transition"></div>
-              <div className="relative bg-card-bg border border-cyber-green/50 rounded-lg p-4 hover:border-cyber-green transition flex items-center gap-3">
-                <FaRobot className="text-cyber-green text-2xl" />
-                <span className="text-sm font-mono">Robotics</span>
-              </div>
-            </div>
-            <div className="group relative">
-              <div className="absolute inset-0 bg-cyber-cyan/20 rounded-lg blur group-hover:bg-cyber-cyan/30 transition"></div>
-              <div className="relative bg-card-bg border border-cyber-cyan/50 rounded-lg p-4 hover:border-cyber-cyan transition flex items-center gap-3">
-                <FaShieldAlt className="text-cyber-cyan text-2xl" />
-                <span className="text-sm font-mono">Security</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="absolute bottom-10 animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"
-               className="w-6 h-6 mx-auto text-cyber-green">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
-          </svg>
-          <span className="block mt-2 text-sm text-gray-400 font-mono">scroll_down</span>
-        </div>
-      </section>
-
-      {/* About Me Section */}
-      <section id="about" className="py-32 px-8 md:px-16 bg-hex-pattern">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="text-4xl font-bold mb-12 font-mono text-cyber-green"
+          {/* Left side - Text content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 space-y-8"
           >
-            <span className="text-gray-500">{'>'}</span> about_me.init()
-          </motion.h2>
+            <div className="space-y-4">
+              <motion.div
+                className="font-mono text-cyber-green text-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                $ whoami
+              </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 items-center">
+              <h1 className="text-5xl md:text-7xl font-bold">
+                <span className="bg-gradient-to-r from-cyber-green via-cyber-cyan to-terminal-green text-transparent bg-clip-text">
+                  {displayText}
+                </span>
+                <span className={displayText === fullText ? 'terminal-cursor' : ''}></span>
+              </h1>
+
+              <p className="text-xl md:text-2xl text-gray-400 font-light">
+                EECS @ UC Berkeley
+              </p>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="flex justify-center md:justify-start mb-8 md:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="space-y-6 max-w-2xl"
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-cyber-cyan/20 rounded-full blur-xl"></div>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                I build things that live at the intersection of hardware and software. From RISC-V processors to enterprise AI systems, I'm drawn to problems that require thinking across the entire stack.
+              </p>
+
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Currently exploring how systems think and how they can be secured—whether that's implementing authentication for 150K+ users at Google or building robots that see. I find beauty in elegant code, robust architectures, and the occasional basketball game.
+              </p>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <motion.a
+                  href="/projects"
+                  className="px-6 py-3 bg-transparent border border-cyber-green/50 text-cyber-green rounded hover:bg-cyber-green/10 transition-all font-mono text-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Work
+                </motion.a>
+                <motion.a
+                  href="/experience"
+                  className="px-6 py-3 bg-cyber-green/10 border border-cyber-green/30 text-white rounded hover:border-cyber-green transition-all font-mono text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Experience
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right side - Image with creative positioning */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-5 relative"
+            style={{
+              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+              transition: 'transform 0.2s ease-out',
+            }}
+          >
+            <div className="relative w-full aspect-square max-w-md mx-auto">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 border-l-2 border-t-2 border-cyber-green/50"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r-2 border-b-2 border-cyber-cyan/50"></div>
+
+              {/* Main image */}
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyber-green/20 to-cyber-cyan/20 rounded-lg blur-2xl"></div>
                 <img
-                  src="./Laughing Headshot.jpg"
+                  src="./Headshot.jpg"
                   alt="Sebastian Vargas"
-                  className="relative w-72 h-72 object-cover drop-shadow-lg rounded-full border-4 border-cyber-cyan/50"
+                  className="relative w-full h-full object-cover rounded-lg border-2 border-cyber-green/30 shadow-[0_0_50px_rgba(16,185,129,0.2)]"
                 />
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="cyber-border rounded-lg p-8"
-            >
-              <p className="text-lg text-gray-300 leading-relaxed mb-4">
-                I'm a passionate EECS student at UC Berkeley with experience across the full technology stack—from hardware to cloud infrastructure. With a perfect 4.0 GPA, I've tackled everything from building RISC-V CPUs to developing enterprise AI solutions.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed mb-4">
-                My journey spans industry giants like <span className="text-cyber-green font-semibold">Google</span>, <span className="text-cyber-cyan font-semibold">NextEra Energy</span>, <span className="text-cyber-orange font-semibold">AMD</span>, and <span className="text-terminal-green font-semibold">Lenovo</span>, where I've built systems processing 10,000+ records, architected RAG AI solutions, and streamlined legal discovery processes.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                I'm driven by two passions: <span className="text-cyber-orange font-semibold">robotics</span> and <span className="text-cyber-cyan font-semibold">computer security</span>. Whether it's building competition robots with computer vision or implementing role-based access control systems, I love creating technology that's both powerful and secure.
-              </p>
-            </motion.div>
+              {/* Floating accent */}
+              <motion.div
+                className="absolute -bottom-8 -left-8 bg-card-bg border border-cyber-cyan/30 rounded-lg p-4 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 }}
+              >
+                <p className="text-sm font-mono text-cyber-cyan">Currently building</p>
+                <p className="text-xs text-gray-400 mt-1">Enterprise AI @ NextEra</p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Tech Stack - Creative Grid */}
+      <section className="py-20 px-8 md:px-16 bg-hex-pattern">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-mono text-cyber-green mb-2">$ cat skills.json</h2>
+            <p className="text-gray-500 font-mono text-sm">// Tech I work with</p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {[
+              'Python', 'Java', 'TypeScript', 'C/C++', 'SQL', 'RISC-V',
+              'React', 'Node.js', 'Flask', 'Django', 'TensorFlow', 'PyTorch',
+              'AWS', 'Azure', 'Firebase', 'PostgreSQL', 'MongoDB', 'Docker'
+            ].map((skill, i) => (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ y: -5 }}
+                className="bg-dark-surface/50 border border-cyber-green/20 rounded-lg p-4 text-center hover:border-cyber-green/50 transition-all cursor-default group"
+              >
+                <span className="text-sm font-mono text-gray-300 group-hover:text-cyber-green transition-colors">
+                  {skill}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Skills & Interests Section */}
-      <section id="skills" className="py-20 px-6 md:px-12 bg-circuit-pattern">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="text-4xl font-bold mb-12 font-mono text-cyber-green"
+      {/* Random fact section */}
+      <section className="py-20 px-8 md:px-16">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="cyber-border rounded-lg p-8 md:p-12 text-center"
           >
-            <span className="text-gray-500">{'>'}</span> technical_arsenal.ls()
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Languages */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="cyber-border rounded-lg p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <FaMicrochip className="text-cyber-green text-2xl" />
-                <h3 className="text-xl font-semibold font-mono text-cyber-green">Languages</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  'Python', 'Java', 'JavaScript/TypeScript', 'C/C++',
-                  'SQL', 'RISC-V', 'Scheme', 'HTML/CSS'
-                ].map((skill) => (
-                  <div key={skill} className="circuit-hover bg-dark-surface border border-cyber-green/30 px-4 py-2 rounded hover:border-cyber-green hover:shadow-[0_0_10px_rgba(16,185,129,0.3)] transition font-mono text-sm">
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Frameworks & Libraries */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="cyber-border rounded-lg p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <FaRobot className="text-cyber-cyan text-2xl" />
-                <h3 className="text-xl font-semibold font-mono text-cyber-cyan">Frameworks</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  'React.js', 'React Native', 'Node.js', 'Express.js',
-                  'Flask', 'Django', 'TensorFlow', 'PyTorch'
-                ].map((skill) => (
-                  <div key={skill} className="circuit-hover bg-dark-surface border border-cyber-cyan/30 px-4 py-2 rounded hover:border-cyber-cyan hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition font-mono text-sm">
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Cloud & Databases */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="cyber-border rounded-lg p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <FaShieldAlt className="text-terminal-green text-2xl" />
-                <h3 className="text-xl font-semibold font-mono text-terminal-green">Cloud & Databases</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  'AWS', 'Microsoft Azure', 'Firebase',
-                  'PostgreSQL', 'MySQL', 'MongoDB'
-                ].map((skill) => (
-                  <div key={skill} className="circuit-hover bg-dark-surface border border-terminal-green/30 px-4 py-2 rounded hover:border-terminal-green hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition font-mono text-sm">
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Interests */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="cyber-border rounded-lg p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <FaLock className="text-cyber-orange text-2xl" />
-                <h3 className="text-xl font-semibold font-mono text-cyber-orange">Interests</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  'Computer Security', 'Robotics', 'AI/ML',
-                  'System Architecture', 'Basketball', 'Football'
-                ].map((interest) => (
-                  <div key={interest} className="circuit-hover bg-dark-surface border border-cyber-orange/30 px-4 py-2 rounded hover:border-cyber-orange hover:shadow-[0_0_10px_rgba(245,158,11,0.3)] transition font-mono text-sm">
-                    {interest}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed mb-6">
+              "The best code is the code you don't have to write."
+            </p>
+            <p className="text-sm font-mono text-cyber-cyan">
+              — Philosophy that guides my work
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
-);
+  );
 };
 
 export default Home;

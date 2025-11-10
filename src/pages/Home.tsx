@@ -75,11 +75,11 @@ const Home: React.FC = () => {
               className="space-y-6 max-w-2xl"
             >
               <p className="text-lg text-gray-300 leading-relaxed">
-                I solve problems algorithmically—whether that's building CPUs that execute instructions, designing secure authentication systems, or training robots to perceive their environment. My work spans from hardware architecture to cloud-scale AI.
+                I solve problems algorithmically—whether that's building CPUs that execute instructions, designing secure authentication systems, or training robots to perceive their environment.
               </p>
 
               <p className="text-lg text-gray-300 leading-relaxed">
-                From implementing RISC-V processors in digital logic to architecting enterprise RAG systems on AWS, I think in systems and algorithms. Give me a hard problem at the intersection of security, autonomy, and performance—that's where I thrive.
+                From architecting enterprise RAG systems on AWS to course work in intractable problems and signal processing, I think in systems and algorithms. Give me a hard problem at the intersection of security, autonomy, and performance—that's where I thrive.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -130,17 +130,6 @@ const Home: React.FC = () => {
                   className="relative w-full h-full object-cover rounded-lg border-2 border-cyber-green/30 shadow-[0_0_50px_rgba(16,185,129,0.2)]"
                 />
               </div>
-
-              {/* Floating accent */}
-              <motion.div
-                className="absolute -bottom-8 -left-8 bg-card-bg border border-cyber-cyan/30 rounded-lg p-4 backdrop-blur-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 }}
-              >
-                <p className="text-sm font-mono text-cyber-cyan">Currently building</p>
-                <p className="text-xs text-gray-400 mt-1">Enterprise AI @ NextEra</p>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -155,14 +144,13 @@ const Home: React.FC = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-mono text-cyber-green mb-2">$ cat skills.json</h2>
-            <p className="text-gray-500 font-mono text-sm">// From silicon to cloud</p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
               'Python', 'Java', 'TypeScript', 'C/C++', 'SQL', 'RISC-V',
               'React', 'Node.js', 'Flask', 'Django', 'TensorFlow', 'PyTorch',
-              'AWS', 'Azure', 'Firebase', 'PostgreSQL', 'MongoDB', 'Docker'
+              'AWS', 'Azure', 'Firebase', 'PostgreSQL', 'MongoDB', 'GCP'
             ].map((skill, i) => (
               <motion.div
                 key={skill}

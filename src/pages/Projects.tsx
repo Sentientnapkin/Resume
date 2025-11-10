@@ -5,10 +5,9 @@ const Projects: React.FC = () => {
 
   const featuredProjects = [
     {
-      title: "CS61CPU",
+      title: "CPU Design",
       subtitle: "RISC-V Processor from Scratch",
       description: "Built a functional CPU in Logisim executing real RISC-V instructions. Designed finite state machine for control logic, implemented ALU with 16 operations, and engineered memory hierarchy with partial load/store support. The CPU successfully runs assembly programs including matrix operations and recursive algorithms.",
-      link: "https://cs61c.org/fa25/projects/proj3/",
       tags: ["RISC-V", "Digital Logic", "Hardware", "FSM"]
     },
     {
@@ -23,7 +22,6 @@ const Projects: React.FC = () => {
     {
       title: "CS61Classify",
       description: "ML classifier written entirely in RISC-V assembly. Implemented matrix multiplication, ReLU activation, and argmax in assembly for handwritten digit recognition. Optimized calling conventions and register allocation for performance.",
-      link: "https://cs61c.org/fa25/projects/proj2/",
       tags: ["RISC-V Assembly", "ML", "Optimization"]
     },
     {
@@ -102,18 +100,6 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
-
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-cyber-green hover:text-terminal-green transition-colors font-mono text-sm"
-                  >
-                    <FaExternalLinkAlt className="text-xs" />
-                    <span>Learn more</span>
-                  </a>
-                )}
               </div>
             </motion.div>
           ))}
@@ -132,9 +118,9 @@ const Projects: React.FC = () => {
             >
               <div className="flex items-start justify-between mb-3">
                 <h3 className="text-lg font-semibold group-hover:text-cyber-green transition-colors">{project.title}</h3>
-                {(project.github || project.link) && (
+                {(project.github) && (
                   <a
-                    href={project.github || project.link}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-cyber-green transition-colors"

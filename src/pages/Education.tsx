@@ -15,7 +15,7 @@ const Education: React.FC = () => {
   const exploring = [
     "CS 162 • Operating Systems",
     "CS 161 • Computer Security",
-    "CS 168 • Networks"
+    "CS 194 - 198 • Networks: Models, Processes & Algorithms"
   ];
 
   return (
@@ -39,7 +39,7 @@ const Education: React.FC = () => {
                 UC Berkeley
               </h2>
               <p className="text-gray-400 font-mono text-sm">
-                Electrical Engineering & Computer Science • '28
+                Electrical Engineering & Computer Science
               </p>
             </div>
           </div>
@@ -140,7 +140,31 @@ const Education: React.FC = () => {
                 UpSync Consulting
               </p>
               <p className="text-sm text-gray-500 font-mono">
-                VP of Projects • Leading technical consulting
+                VP of Projects • Leading technical & strategy consulting
+              </p>
+            </div>
+            <span className="ml-auto text-gray-700 group-hover:text-cyber-green transition-colors">
+              ↗
+            </span>
+          </a>
+
+          <a
+            href="https://hes.studentorg.berkeley.edu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 rounded-lg bg-dark-surface/30 hover:bg-dark-surface/50 transition-all border border-transparent hover:border-cyber-green/20 group"
+          >
+            <img
+              src="./HESLogo.png"
+              alt="HES"
+              className="w-12 h-12 rounded-lg"
+            />
+            <div>
+              <p className="font-semibold text-white group-hover:text-cyber-green transition-colors">
+                Hispanic Engineers and Scientists
+              </p>
+              <p className="text-sm text-gray-500 font-mono">
+                Member
               </p>
             </div>
             <span className="ml-auto text-gray-700 group-hover:text-cyber-green transition-colors">

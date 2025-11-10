@@ -20,7 +20,7 @@ const Experience: React.FC = () => {
     },
     {
       company: "NextEra Energy",
-      title: "Technical PM",
+      title: "Technical PM | Contract",
       date: "Sep 2025 - Present",
       location: "Remote",
       color: "cyber-cyan",
@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
     },
     {
       company: "AMD",
-      title: "Full Stack Engineer",
+      title: "Full Stack Engineer | Contract",
       date: "Fall 2024",
       location: "Santa Clara",
       color: "terminal-green",
@@ -46,7 +46,7 @@ const Experience: React.FC = () => {
     },
     {
       company: "Lenovo",
-      title: "Full Stack Engineer",
+      title: "Full Stack Engineer | Contract",
       date: "Spring 2025",
       location: "Morrisville",
       color: "cyber-orange",

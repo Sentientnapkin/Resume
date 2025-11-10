@@ -14,6 +14,9 @@
   --card-bg: #1a1f2e;
   --text: #f8fafc;
   --text-secondary: #94a3b8;
+
+  /* Subtle team colors - Warriors: #1D428A (blue), #FFC72C (gold) */
+  /* Dolphins: #008E97 (aqua), #FC4C02 (orange) - incorporated into cyber-cyan and cyber-orange */
 }
 
 html {

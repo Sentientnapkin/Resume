@@ -98,7 +98,9 @@ const Experience: React.FC = () => {
             <br />
             <span className="text-gray-400">been building</span>
           </h2>
-          <p className="text-gray-500 font-mono text-sm">$ ls -la ~/experience/</p>
+          <p className="text-gray-500 font-mono text-sm">
+            $ ls -la ~/experience/ <span className="text-gray-700">// 8 companies, hardware to cloud</span>
+          </p>
         </motion.div>
 
         {/* Masonry-style grid */}

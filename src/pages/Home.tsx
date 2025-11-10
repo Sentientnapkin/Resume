@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -74,30 +75,32 @@ const Home: React.FC = () => {
               className="space-y-6 max-w-2xl"
             >
               <p className="text-lg text-gray-300 leading-relaxed">
-                I build things that live at the intersection of hardware and software. From RISC-V processors to enterprise AI systems, I'm drawn to problems that require thinking across the entire stack.
+                I solve problems algorithmically—whether that's building CPUs that execute instructions, designing secure authentication systems, or training robots to perceive their environment. My work spans from hardware architecture to cloud-scale AI.
               </p>
 
               <p className="text-lg text-gray-300 leading-relaxed">
-                Currently exploring how systems think and how they can be secured—whether that's implementing authentication for 150K+ users at Google or building robots that see. I find beauty in elegant code, robust architectures, and the occasional basketball game.
+                From implementing RISC-V processors in digital logic to architecting enterprise RAG systems on AWS, I think in systems and algorithms. Give me a hard problem at the intersection of security, autonomy, and performance—that's where I thrive.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
-                <motion.a
-                  href="/projects"
-                  className="px-6 py-3 bg-transparent border border-cyber-green/50 text-cyber-green rounded hover:bg-cyber-green/10 transition-all font-mono text-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Work
-                </motion.a>
-                <motion.a
-                  href="/experience"
-                  className="px-6 py-3 bg-cyber-green/10 border border-cyber-green/30 text-white rounded hover:border-cyber-green transition-all font-mono text-sm"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Experience
-                </motion.a>
+                <Link to="/projects">
+                  <motion.button
+                    className="px-6 py-3 bg-transparent border border-cyber-green/50 text-cyber-green rounded hover:bg-cyber-green/10 transition-all font-mono text-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Work
+                  </motion.button>
+                </Link>
+                <Link to="/experience">
+                  <motion.button
+                    className="px-6 py-3 bg-cyber-green/10 border border-cyber-green/30 text-white rounded hover:border-cyber-green transition-all font-mono text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Experience
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </motion.div>
@@ -152,7 +155,7 @@ const Home: React.FC = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-mono text-cyber-green mb-2">$ cat skills.json</h2>
-            <p className="text-gray-500 font-mono text-sm">// Tech I work with</p>
+            <p className="text-gray-500 font-mono text-sm">// From silicon to cloud</p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -178,21 +181,54 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Random fact section */}
+      {/* What I'm thinking about - More technical */}
       <section className="py-20 px-8 md:px-16">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="cyber-border rounded-lg p-8 md:p-12 text-center"
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-2xl font-mono text-cyber-cyan mb-12"
           >
-            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed mb-6">
-              "The best code is the code you don't have to write."
-            </p>
-            <p className="text-sm font-mono text-cyber-cyan">
-              — Philosophy that guides my work
-            </p>
-          </motion.div>
+            $ current_interests --verbose
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-card-bg border border-cyber-green/30 rounded-lg p-6 hover:border-cyber-green/60 transition-all"
+            >
+              <h3 className="text-lg font-semibold text-cyber-green mb-3">Algorithmic Security</h3>
+              <p className="text-sm text-gray-400">
+                How do you design authentication that scales? Exploring the algorithms behind OAuth, RBAC, and distributed security systems.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-card-bg border border-cyber-cyan/30 rounded-lg p-6 hover:border-cyber-cyan/60 transition-all"
+            >
+              <h3 className="text-lg font-semibold text-cyber-cyan mb-3">Autonomous Systems</h3>
+              <p className="text-sm text-gray-400">
+                Computer vision, path planning, and real-time control. Building robots that make decisions with limited compute and uncertain environments.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-card-bg border border-terminal-green/30 rounded-lg p-6 hover:border-terminal-green/60 transition-all group"
+            >
+              <h3 className="text-lg font-semibold text-terminal-green mb-3">Low-level Optimization</h3>
+              <p className="text-sm text-gray-400">
+                From assembly to architecture. How close to the metal can we get while maintaining elegance? <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">Also: Go Warriors 🏀</span>
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

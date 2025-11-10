@@ -5,6 +5,30 @@ const Projects: React.FC = () => {
 
   const projects = [
     {
+      title: "CS61CPU - RISC-V Processor",
+      duration: "Fall 2024",
+      link: "https://cs61c.org/fa25/projects/proj3/",
+      description: [
+        "Built a functional CPU in Logisim capable of executing actual RISC-V instructions from the ground up",
+        "Implemented complete instruction set architecture including control logic, ALU operations, memory management, and register file",
+        "Developed hardware support for partial loads/stores and debugging capabilities to run real assembly programs",
+        "Gained deep understanding of computer architecture, digital logic design, and low-level hardware-software interaction"
+      ],
+      technologies: ["RISC-V", "Logisim", "Computer Architecture", "Digital Logic", "Hardware Design"]
+    },
+    {
+      title: "CS61Classify - Assembly ML Classifier",
+      duration: "Fall 2024",
+      link: "https://cs61c.org/fa25/projects/proj2/",
+      description: [
+        "Wrote RISC-V assembly code to classify handwritten digits using machine learning algorithms",
+        "Implemented calling conventions, heap memory management, and file I/O operations entirely in assembly",
+        "Developed matrix multiplication and neural network inference routines optimized for RISC-V architecture",
+        "Integrated comprehensive testing and memory safety verification using Venus debugger"
+      ],
+      technologies: ["RISC-V Assembly", "Machine Learning", "Memory Management", "File I/O"]
+    },
+    {
       title: "Resourcify",
       duration: "Sep 2022 - May 2023",
       location: "Pleasanton, California",
@@ -60,31 +84,33 @@ const Projects: React.FC = () => {
         "Created a machine learning model to predict fantasy football scores for NFL players",
         "Utilized player and team statistics to train the model",
       ],
-      technologies: ["Python", "Matplotlib", "Pygame"]
+      technologies: ["Python", "Matplotlib", "scikit-learn"]
     }
   ];
 
   return (
     <div className="container py-24">
       <motion.h2
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        className="text-4xl font-bold mb-12 bg-gradient-to-r from-blue-400 to-violet-400 text-transparent bg-clip-text"
+        initial={{opacity: 0, x: -20}}
+        animate={{opacity: 1, x: 0}}
+        className="text-4xl font-bold mb-12 font-mono text-cyber-green"
       >
-        Projects
+        <span className="text-gray-500">{'>'}</span> projects.list()
       </motion.h2>
-      {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{
-            delay: 0,
-          }}
-        >
-          <ProjectCard key={index} {...project} />
-        </motion.div>
-      ))}
+      <div className="space-y-6">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: index * 0.1,
+            }}
+          >
+            <ProjectCard {...project} />
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

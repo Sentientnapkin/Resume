@@ -10,7 +10,7 @@ import Blogs from "./pages/Blogs.tsx";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
+      <div className="min-h-screen bg-dark-bg">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

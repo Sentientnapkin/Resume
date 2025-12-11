@@ -74,13 +74,6 @@ const Home: React.FC = () => {
               transition={{ delay: 1 }}
               className="space-y-6 max-w-2xl"
             >
-              <p className="text-lg text-gray-300 leading-relaxed">
-                I solve problems algorithmically—whether that's building CPUs that execute instructions, designing secure authentication systems, or training robots to perceive their environment.
-              </p>
-
-              <p className="text-lg text-gray-300 leading-relaxed">
-                From architecting enterprise RAG systems on AWS to course work in intractable problems and signal processing, I think in systems and algorithms. Give me a hard problem at the intersection of security, autonomy, and performance—that's where I thrive.
-              </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link to="/projects">

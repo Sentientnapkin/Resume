@@ -35,16 +35,16 @@ const Education: React.FC = () => {
               className="w-20 h-20 rounded-lg opacity-80"
             />
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
                 UC Berkeley
               </h2>
-              <p className="text-gray-400 font-mono text-sm">
+              <p className="text-text-secondary font-mono text-sm">
                 Electrical Engineering & Computer Science
               </p>
             </div>
           </div>
 
-          <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
+          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
             Navigating the intersection of hardware and software, with a curiosity for how systems work at every level.
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ const Education: React.FC = () => {
           transition={{ delay: 0.3 }}
           className="mb-16"
         >
-          <h3 className="text-sm font-mono text-gray-500 uppercase tracking-wider mb-6">
+          <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
             What I've been learning
           </h3>
 
@@ -72,14 +72,14 @@ const Education: React.FC = () => {
                 transition={{ delay: 0.4 + i * 0.05 }}
                 className="block group"
               >
-                <div className="flex items-baseline gap-4 py-2 px-4 rounded hover:bg-dark-surface/50 transition-all">
-                  <span className="font-mono text-sm text-cyber-green min-w-[80px]">
+                <div className="flex items-baseline gap-4 py-2 px-4 rounded hover:bg-bg-secondary/50 transition-all">
+                  <span className="font-mono text-sm text-accent min-w-[80px]">
                     {item.course}
                   </span>
-                  <span className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                  <span className="text-text-secondary group-hover:text-text-primary transition-colors">
                     {item.name}
                   </span>
-                  <span className="ml-auto text-gray-700 group-hover:text-cyber-green transition-colors">
+                  <span className="ml-auto text-text-tertiary group-hover:text-accent transition-colors">
                     →
                   </span>
                 </div>
@@ -95,7 +95,7 @@ const Education: React.FC = () => {
           transition={{ delay: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-sm font-mono text-gray-500 uppercase tracking-wider mb-6">
+          <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
             What's next
           </h3>
 
@@ -106,9 +106,9 @@ const Education: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 + i * 0.05 }}
-                className="py-2 px-4 rounded bg-dark-surface/30"
+                className="py-2 px-4 rounded bg-bg-secondary/30"
               >
-                <span className="text-gray-400 font-mono text-sm">{item}</span>
+                <span className="text-text-secondary font-mono text-sm">{item}</span>
               </motion.div>
             ))}
           </div>
@@ -120,7 +120,7 @@ const Education: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          <h3 className="text-sm font-mono text-gray-500 uppercase tracking-wider mb-6">
+          <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
             Beyond classes
           </h3>
 
@@ -128,7 +128,7 @@ const Education: React.FC = () => {
             href="https://www.upsyncberkeley.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 p-4 rounded-lg bg-dark-surface/30 hover:bg-dark-surface/50 transition-all border border-transparent hover:border-cyber-green/20 group"
+            className="flex items-center gap-4 p-4 rounded-lg bg-bg-secondary/30 hover:bg-bg-secondary/50 transition-all border border-transparent hover:border-accent/20 group"
           >
             <img
               src="./UpsyncLogo.png"
@@ -136,14 +136,14 @@ const Education: React.FC = () => {
               className="w-12 h-12 rounded-lg"
             />
             <div>
-              <p className="font-semibold text-white group-hover:text-cyber-green transition-colors">
+              <p className="font-semibold text-text-primary group-hover:text-accent transition-colors">
                 UpSync Consulting
               </p>
-              <p className="text-sm text-gray-500 font-mono">
+              <p className="text-sm text-text-tertiary font-mono">
                 VP of Projects • Leading technical & strategy consulting
               </p>
             </div>
-            <span className="ml-auto text-gray-700 group-hover:text-cyber-green transition-colors">
+            <span className="ml-auto text-text-tertiary group-hover:text-accent transition-colors">
               ↗
             </span>
           </a>
@@ -152,7 +152,7 @@ const Education: React.FC = () => {
             href="https://hes.studentorg.berkeley.edu/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 p-4 rounded-lg bg-dark-surface/30 hover:bg-dark-surface/50 transition-all border border-transparent hover:border-cyber-green/20 group"
+            className="flex items-center gap-4 p-4 rounded-lg bg-bg-secondary/30 hover:bg-bg-secondary/50 transition-all border border-transparent hover:border-accent/20 group"
           >
             <img
               src="./HESLogo.png"
@@ -160,14 +160,14 @@ const Education: React.FC = () => {
               className="w-12 h-12 rounded-lg"
             />
             <div>
-              <p className="font-semibold text-white group-hover:text-cyber-green transition-colors">
+              <p className="font-semibold text-text-primary group-hover:text-accent transition-colors">
                 Hispanic Engineers and Scientists
               </p>
-              <p className="text-sm text-gray-500 font-mono">
+              <p className="text-sm text-text-tertiary font-mono">
                 Member
               </p>
             </div>
-            <span className="ml-auto text-gray-700 group-hover:text-cyber-green transition-colors">
+            <span className="ml-auto text-text-tertiary group-hover:text-accent transition-colors">
               ↗
             </span>
           </a>

@@ -15,7 +15,7 @@ const EmailButton: React.FC = () => {
   return (
     <div className="relative">
       <button
-        className="text-gray-400 hover:text-terminal-green transition p-2 rounded-full hover:bg-terminal-green/10 hover:shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+        className="text-text-secondary hover:text-accent transition p-2"
         onClick={copyEmailToClipboard}
       >
         <FaEnvelope className="w-5 h-5"/>
@@ -23,7 +23,7 @@ const EmailButton: React.FC = () => {
       <AnimatePresence>
         {copied && (
           <motion.span
-            className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-mono text-terminal-green bg-dark-surface border border-terminal-green/50 px-3 py-1 rounded shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+            className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-mono text-accent bg-bg-secondary border border-border px-3 py-1 rounded"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

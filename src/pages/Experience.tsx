@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Experience: React.FC = () => {
-  const [selectedExp, setSelectedExp] = useState<number | null>(null);
-
   const experiences = [
     {
       company: "Google",
       title: "Software Developer Intern",
       date: "Summer 2025",
       location: "New York",
-      color: "cyber-green",
       summary: "Built change history systems for performance management",
       details: [
         "Developed change history functionality processing 10,000+ quarterly records",
@@ -23,7 +20,6 @@ const Experience: React.FC = () => {
       title: "Technical PM | Contract",
       date: "Sep 2025 - Present",
       location: "Remote",
-      color: "cyber-cyan",
       summary: "Architecting enterprise AI for regulatory intelligence",
       details: [
         "Built RAG AI solution with AWS Bedrock reducing research time by 75%",
@@ -36,7 +32,6 @@ const Experience: React.FC = () => {
       title: "Full Stack Engineer | Contract",
       date: "Fall 2024",
       location: "Santa Clara",
-      color: "terminal-green",
       summary: "Streamlined legal discovery with React and Azure",
       details: [
         "Reduced data retrieval time by 60% for 50+ litigation cases",
@@ -49,7 +44,6 @@ const Experience: React.FC = () => {
       title: "Full Stack Engineer | Contract",
       date: "Spring 2025",
       location: "Morrisville",
-      color: "cyber-orange",
       summary: "Evaluated AI integration in software development",
       details: [
         "Led cross-functional case study on AI-assisted development",
@@ -62,7 +56,6 @@ const Experience: React.FC = () => {
       title: "VP of Projects",
       date: "Sep 2025 - Present",
       location: "Berkeley",
-      color: "cyber-cyan",
       summary: "Leading technical consulting projects",
       details: [
         "Delivered 5 client projects managing 10 technical PMs",
@@ -75,7 +68,6 @@ const Experience: React.FC = () => {
       title: "Build Manager",
       date: "2023-2024",
       location: "Danville",
-      color: "terminal-green",
       summary: "Directed 40-member competition robotics team",
       details: [
         "Coordinated cross-functional subteams for robot construction",
@@ -89,80 +81,44 @@ const Experience: React.FC = () => {
     <div className="min-h-screen py-24 px-8 md:px-16">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-cyber-green">Where I've</span>
-            <br />
-            <span className="text-gray-400">been building</span>
-          </h2>
-          <p className="text-gray-500 font-mono text-sm">
-            $ ls -la ~/experience/ <span className="text-gray-700">// 8 companies, hardware to cloud</span>
-          </p>
+          <h2 className="text-4xl font-bold text-text-primary mb-4">Experience</h2>
+          <p className="text-text-secondary">Building across hardware, cloud, and AI</p>
         </motion.div>
 
-        {/* Masonry-style grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        {/* Single-column layout */}
+        <div className="max-w-3xl mx-auto space-y-6">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="break-inside-avoid"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className="border border-border rounded-lg p-6 hover:border-accent transition-all"
             >
-              <motion.div
-                onClick={() => setSelectedExp(selectedExp === index ? null : index)}
-                className={`
-                  bg-card-bg border border-${exp.color}/30 rounded-lg p-6 cursor-pointer
-                  hover:border-${exp.color}/60 transition-all duration-300
-                  hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]
-                  ${selectedExp === index ? `border-${exp.color} shadow-[0_0_30px_rgba(16,185,129,0.2)]` : ''}
-                `}
-                whileHover={{ y: -5 }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className={`text-xl font-bold text-${exp.color} mb-1`}>{exp.company}</h3>
-                    <p className="text-sm text-gray-400 font-mono">{exp.title}</p>
-                  </div>
-                  <div className={`w-2 h-2 rounded-full bg-${exp.color} animate-pulse`}></div>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-text-primary">{exp.company}</h3>
+                  <p className="text-accent font-mono text-sm">{exp.title}</p>
                 </div>
+                <p className="text-text-tertiary text-sm">{exp.date}</p>
+              </div>
 
-                <p className="text-sm text-gray-500 font-mono mb-3">{exp.date} • {exp.location}</p>
+              <p className="text-text-tertiary font-mono text-xs mb-4">{exp.location}</p>
 
-                <p className="text-gray-300 mb-4">{exp.summary}</p>
+              <p className="text-text-secondary mb-4">{exp.summary}</p>
 
-                <AnimatePresence>
-                  {selectedExp === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="space-y-2 mt-4 pt-4 border-t border-gray-700"
-                    >
-                      {exp.details.map((detail, i) => (
-                        <motion.p
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.1 }}
-                          className="text-sm text-gray-400 flex gap-2"
-                        >
-                          <span className={`text-${exp.color}`}>▹</span>
-                          <span>{detail}</span>
-                        </motion.p>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <p className="text-xs text-gray-600 font-mono mt-4">
-                  {selectedExp === index ? 'Click to collapse' : 'Click for details'}
-                </p>
-              </motion.div>
+              <ul className="space-y-2">
+                {exp.details.map((detail, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-text-secondary">
+                    <span className="w-2 h-2 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -171,21 +127,21 @@ const Experience: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="mt-16 pt-16 border-t border-gray-800"
+          className="mt-16 pt-16 border-t border-border max-w-3xl mx-auto"
         >
-          <h3 className="text-2xl font-mono text-cyber-cyan mb-8">Also...</h3>
+          <h3 className="text-2xl font-mono text-accent mb-8">Also...</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-dark-surface/50 border border-gray-800 rounded-lg p-6 hover:border-cyber-green/30 transition-all">
-              <h4 className="text-lg font-semibold mb-2">Resourcify</h4>
-              <p className="text-sm text-gray-500 font-mono mb-3">Lead Developer • 2022-2023</p>
-              <p className="text-sm text-gray-400">
+            <div className="border border-border rounded-lg p-6 hover:border-accent transition-all">
+              <h4 className="text-lg font-semibold text-text-primary mb-2">Resourcify</h4>
+              <p className="text-sm text-text-tertiary font-mono mb-3">Lead Developer • 2022-2023</p>
+              <p className="text-sm text-text-secondary">
                 Built React Native app for refugees, collaborating with community centers to identify real needs
               </p>
             </div>
-            <div className="bg-dark-surface/50 border border-gray-800 rounded-lg p-6 hover:border-cyber-green/30 transition-all">
-              <h4 className="text-lg font-semibold mb-2">Mighty Coders</h4>
-              <p className="text-sm text-gray-500 font-mono mb-3">Volunteer Instructor • 2023</p>
-              <p className="text-sm text-gray-400">
+            <div className="border border-border rounded-lg p-6 hover:border-accent transition-all">
+              <h4 className="text-lg font-semibold text-text-primary mb-2">Mighty Coders</h4>
+              <p className="text-sm text-text-tertiary font-mono mb-3">Volunteer Instructor • 2023</p>
+              <p className="text-sm text-text-secondary">
                 Taught coding to 20 students from underrepresented backgrounds in Python, C#, and JavaScript
               </p>
             </div>

@@ -12,16 +12,16 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, github, link, location, description, technologies }) => (
-  <div className="cyber-border rounded-lg p-6 circuit-hover group hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] transition-all duration-300">
+  <div className="border border-border rounded-lg p-6 hover:border-accent transition-all duration-200 group">
     <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
       <div>
-        <h3 className="text-2xl font-bold text-white group-hover:text-cyber-green transition-colors mb-2">{title}</h3>
+        <h3 className="text-2xl font-bold text-text-primary group-hover:text-accent transition-colors mb-2">{title}</h3>
         <div className="flex items-center gap-4 text-sm font-mono">
-          <span className="text-gray-400">{duration}</span>
+          <span className="text-text-secondary">{duration}</span>
           {location && (
             <>
-              <span className="text-gray-600">|</span>
-              <span className="text-gray-500">{location}</span>
+              <span className="text-text-tertiary">|</span>
+              <span className="text-text-secondary">{location}</span>
             </>
           )}
         </div>
@@ -32,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, github, link
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-dark-surface border border-cyber-green/30 rounded hover:border-cyber-green hover:shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all text-cyber-green text-sm font-mono"
+            className="flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded hover:bg-accent hover:text-white transition-all text-sm font-mono"
           >
             <FaGithub />
             <span>Code</span>
@@ -43,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, github, link
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-dark-surface border border-cyber-cyan/30 rounded hover:border-cyber-cyan hover:shadow-[0_0_10px_rgba(6,182,212,0.3)] transition-all text-cyber-cyan text-sm font-mono"
+            className="flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded hover:bg-accent hover:text-white transition-all text-sm font-mono"
           >
             <FaExternalLinkAlt />
             <span>Details</span>
@@ -54,8 +54,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, github, link
 
     <ul className="space-y-2 mb-4">
       {description.map((desc, index) => (
-        <li key={index} className="text-gray-300 text-sm leading-relaxed flex gap-3">
-          <span className="text-cyber-cyan font-mono mt-1">▹</span>
+        <li key={index} className="text-text-secondary text-sm leading-relaxed flex gap-3">
+          <span className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
           <span>{desc}</span>
         </li>
       ))}
@@ -65,7 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, github, link
       {technologies.map((tech) => (
         <span
           key={tech}
-          className="px-3 py-1 bg-dark-surface border border-terminal-green/30 text-terminal-green rounded font-mono text-xs hover:border-terminal-green hover:shadow-[0_0_5px_rgba(34,197,94,0.3)] transition-all"
+          className="px-3 py-1 border border-border text-text-secondary rounded text-xs font-mono hover:border-accent hover:text-accent transition-all"
         >
           {tech}
         </span>

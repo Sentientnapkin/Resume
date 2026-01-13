@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
 import WorkEntry from '../components/WorkEntry';
-import { featuredWork, moreProjects, skills, education, researchFocus, stats } from '../data/workData';
+import { featuredWork, moreProjects, skills, education, researchFocus } from '../data/workData';
 
 const Portfolio: React.FC = () => {
   const [showMoreProjects, setShowMoreProjects] = useState(false);

@@ -29,10 +29,6 @@ const Portfolio: React.FC = () => {
               <p className="text-2xl text-text-secondary font-light">
                 EECS @ UC Berkeley
               </p>
-
-              <p className="text-lg text-accent font-light max-w-xl">
-                Building intelligent systems from silicon to software
-              </p>
             </div>
 
             {/* Quick Links */}

@@ -3,7 +3,12 @@
     "allow": [
       "WebFetch(domain:cs61c.org)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nRedesign with minimalist CS-inspired aesthetic\n\nTransformed from cyberpunk/neon to clean minimalist design with subtle computer science visual elements:\n\n- Color palette: Replaced 4+ neon colors with monochrome + single muted slate-blue accent\n- Removed heavy animations \\(typing, parallax, glow, pulse\\) - kept only essential fades\n- Simplified layouts: 6-col skills grid → 2-col, masonry experience → single-column\n- Added CS-inspired elements: graph node bullets, subtle corner brackets\n- Updated all components and pages with consistent minimal styling\n- Net reduction of 250 lines for cleaner codebase\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "WebSearch",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

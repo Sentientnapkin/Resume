@@ -1,11 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Experience from './pages/Experience';
-import Projects from './pages/Projects';
-import Education from './pages/Education';
-import Blogs from "./pages/Blogs.tsx";
+import Portfolio from './pages/Portfolio';
 
 const App: React.FC = () => {
   return (
@@ -13,11 +9,7 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-dark-bg">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/" element={<Portfolio />} />
         </Routes>
       </div>
     </BrowserRouter>

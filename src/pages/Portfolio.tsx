@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
 import WorkEntry from '../components/WorkEntry';
+import BlogCard from '../components/BlogCard';
 import { featuredWork, moreProjects, skills, education, researchFocus } from '../data/workData';
+import { blogPosts } from '../content/blog';
 
 const Portfolio: React.FC = () => {
   const [showMoreProjects, setShowMoreProjects] = useState(false);
@@ -164,6 +166,26 @@ const Portfolio: React.FC = () => {
               <span>@Sentientnapkin</span>
             </a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ========== BLOG SECTION ========== */}
+      <section id="blog" className="py-24 px-8 md:px-16">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mb-16"
+          >
+            <h2 className="text-4xl font-bold text-text-primary mb-4">Writing</h2>
+            <p className="text-text-secondary">Thoughts on systems, robotics, and engineering</p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            {blogPosts.map((post, index) => (
+              <BlogCard key={post.slug} post={post} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "framer-motion": "^11.13.5",
     "motion": "^11.13.5",
     "react": "^18.3.1",

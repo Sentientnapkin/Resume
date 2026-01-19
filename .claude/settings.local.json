@@ -8,7 +8,18 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nRedesign with minimalist CS-inspired aesthetic\n\nTransformed from cyberpunk/neon to clean minimalist design with subtle computer science visual elements:\n\n- Color palette: Replaced 4+ neon colors with monochrome + single muted slate-blue accent\n- Removed heavy animations \\(typing, parallax, glow, pulse\\) - kept only essential fades\n- Simplified layouts: 6-col skills grid → 2-col, masonry experience → single-column\n- Added CS-inspired elements: graph node bullets, subtle corner brackets\n- Updated all components and pages with consistent minimal styling\n- Net reduction of 250 lines for cleaner codebase\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push)",
       "WebSearch",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(git -C /Users/School/WebstormProjects/resume add package.json package-lock.json vite.config.ts src/mdx.d.ts src/content/ src/components/BlogCard.tsx src/components/MDXComponents.tsx src/pages/BlogPost.tsx src/App.tsx src/pages/Portfolio.tsx src/data/workData.ts)",
+      "Bash(git -C /Users/School/WebstormProjects/resume commit -m \"Add MDX-based blog system with dedicated post pages\")",
+      "Bash(git -C /Users/School/WebstormProjects/resume status)",
+      "Bash(ffmpeg:*)",
+      "Bash(pkill:*)",
+      "Bash(cat:*)",
+      "Bash(ffprobe:*)",
+      "Bash(sips:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,160 @@
+export const frontmatter = {
+  title: 'Trying out ACT Models',
+  date: 'January 13, 2026',
+  summary: 'My first attempt at making an ACT model work',
+  tags: ['Robotics', 'ACT', 'Imitation Learning'],
+  readTime: '3 min read'
+}
+
+With my SO-101 I went ahead and got started trying to train an ACT model. After getting past the whole setup the first hurdle was learning how to go about training the data. Going in I didn't neccessarily have a concept of how important the data retrieval aspect was, but we'll get into that later. 
+
+I specifically chose the ACT model because, from my understanding, it was the most lightweight model available. While I have you hear I might as well try and explain how it works to prove to myself that I know what I'm doing. 
+
+Reading through [this paper](https://tonyzhaozh.github.io/aloha/) by some incredibly brilliant scientists, the novel idea behind using an ACT is that instead of more standard behavioral cloning it predicts what will happen for some future amount of steps and do a simple PID to get to that step. They found that for more fine-grained tasks this amount of prediction was neccessary for the success of the model. The prediction is done with transformers taking in tons of inputs from cameras and motor actions/states for the machine.
+
+I started with a simple pick-and-place algorithm with a bowl and a random assortment of objects in my home, and used that as the base for the beginning of my journey.
+
+### Attempt 1
+
+Going into training my mindset was just get 100 episodes of data it will be able to figure something out. For a note on my setup, I had one lamp watching from above, I tried 5 backdrops, 3 bowls, 10 items for 100 episodes, and I only used the wrist camera since that was the only thing I had in that moment.
+
+Here are some of the training videos
+
+<video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+  <source src="/blog_images/ACT_Training_1_1.mp4" type="video/mp4" />
+</video>
+
+<video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+  <source src="/blog_images/ACT_Training_1_2.mp4" type="video/mp4" />
+</video>
+
+After training it for ~6 hours on my own personal GPU (since the limited memory only allowed for a batch size of 2) it was ready for evaluation. On evaluation here were the results. I split my evaluation scenarios into two buckets, scenarios from the training data and new scenarios. 
+
+Training Scenarios: 0/10
+New Scenarios: 0/5
+
+Here are some examples from evaluation:
+
+<video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+  <source src="/blog_images/ACT_Eval_1_1.mp4" type="video/mp4" />
+</video>
+
+<video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+  <source src="/blog_images/ACT_Eval_1_2.mp4" type="video/mp4" />
+</video>
+
+Safe to say it was pretty dissapointing. The positives are it definintely understood the task and it knew the general area of where to find the objects, but after that it really struggled. My main takeaways were that just the grabber video stream was not going to be enough and that I was going to need more data for this to work. 
+
+### Attempt 2
+
+The big jump here was that I now had two whole camera angles, and I was hoping that that with the same format as before would help me with my model. And so I trained it for 100k steps like the last one (this will become relevant later) and hoped and prayed that this one would be cool and I could post it online as a huge success story of course. Anyways back to more realistic things here is the training data:
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Training_2_1_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Training_2_1_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Training_2_2_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Training_2_2_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+The training data was solid, although I still had some skepticisms from before with regards to the amount of data. I updated the criteria for this one to be as follows: 
+
+- 1 point if it succeeds on the first attempt
+- 0.5 points if it succeeds in general
+- 0 points otherwise
+
+The evaluation was as follows:
+
+Training Scenarios: 3/10
+New Scenarios: 0/5
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_2_1_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_2_1_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_2_2_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_2_2_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+So what were my takeaways? One big thing was that I really should have a better way of keeping a consistent camera angle. I have it mounted awkwardly on the top of my monitor and I was very confident that the camera angles were similar enough but I'm not sure if that worked. Also, 100 episodes really isn't enough for a good model with good training unless the data is really really good. Was it what I wanted it to be? No, but at the same time all I'm really trying to do is figure out how everything works!
+
+The importance of good data really hasn't been more obvious to me outside of this. I need a better way to get all forms and varieties of data in order to allow the model to generalize, and I need to limit the amount of variables outside of the ones implicit in the problem definition in order to make a seriously good model. 
+
+### Attempt 3
+
+This one is a little more somber. I finally decided to run a lambda instance and train this on an a100 GPU in order to train it faster. I raised the batch size up to 16 which was the most I could do without having memory errors, and boom. The same amount of time, just more samples viewed. At the same time, all this means is that I don't need to do as many steps to get the same level of performance, but at the same time I wanted to try the 100k steps that were reccomended by lerobot. I trained the model but I found a setting for temporal ensemble, which instead of just picking the kth predicted step and going with it it takes a weighted average across all of the future steps, which comes out with a smoother model. I used the same training data and I got these results:
+
+Training Scenarios: 4/10
+New Scenarios: 1/5
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_3_1_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_3_1_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<div style="display:flex;">
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_3_2_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div style="flex:1; padding: 0px 5px;">
+    <video controls style={{maxWidth: '375px', maxHeight: '500px', marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '0.5rem'}}>
+        <source src="/blog_images/ACT_Eval_3_2_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+So the temporal ensemble may have been an improvemenet here, but it's not a true experience since this was trained on an a100 GPU. Because it trained with 10x the batch size, the amount of epochs was so much higher and it actually managed to learn a little better on the data, but alas I have this model that can sometimes pickup an object and place it into a bowl. 
+
+This concludes my experience with using an ACT model to pick and place with a bowl, and hopefully in the future I can iterate on this and make a better model with some more data.
+
+
+
+
+
+

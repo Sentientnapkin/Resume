@@ -24,7 +24,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index = 0 }) => {
           <div className="flex flex-wrap gap-3 text-sm text-text-secondary font-mono">
             <span>{post.date}</span>
             <span>•</span>
-            <span>{post.readTime}</span>
           </div>
         </div>
 

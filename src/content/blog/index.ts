@@ -1,10 +1,10 @@
-import VlaIntuition, { frontmatter as vlaFrontmatter } from './vla-intuition.mdx'
+import ImitationLearning, { frontmatter as imitationFrontmatter } from './ImitationLearning.mdx'
 
 export const blogPosts = [
   {
-    slug: 'vla-intuition',
-    Component: VlaIntuition,
-    ...vlaFrontmatter
+    slug: '',
+    Component: ImitationLearning,
+    ...imitationFrontmatter
   }
 ]
 

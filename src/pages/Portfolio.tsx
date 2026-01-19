@@ -178,7 +178,7 @@ const Portfolio: React.FC = () => {
             className="mb-16"
           >
             <h2 className="text-4xl font-bold text-text-primary mb-4">Writing</h2>
-            <p className="text-text-secondary">Thoughts on systems, robotics, and engineering</p>
+            <p className="text-text-secondary">Thoughts</p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto space-y-8">

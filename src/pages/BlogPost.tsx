@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { MDXProvider } from '@mdx-js/react'
 import { motion } from 'framer-motion'
 import { blogPosts } from '../content/blog'
 import { mdxComponents } from '../components/MDXComponents'
@@ -82,9 +81,7 @@ const BlogPost: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="prose prose-invert max-w-none"
           >
-            <MDXProvider components={mdxComponents}>
-              <Component />
-            </MDXProvider>
+            <Component components={mdxComponents} />
           </motion.div>
 
           {/* Footer */}

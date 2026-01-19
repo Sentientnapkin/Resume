@@ -229,7 +229,7 @@ export const education = {
     {
       name: 'Hispanic Engineers and Scientists',
       role: 'Member',
-      logo: './HESLogo.png',
+      logo: './HES_Logo.png',
       link: 'https://hes.studentorg.berkeley.edu/'
     }
   ]

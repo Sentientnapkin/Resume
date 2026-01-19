@@ -67,10 +67,8 @@ export const mdxComponents: MDXComponents = {
     )
   },
   pre: ({ children }) => (
-    <pre className="bg-bg-secondary border border-border rounded-lg p-4 mb-4 overflow-x-auto">
-      <code className="text-sm font-mono text-text-primary">
-        {children}
-      </code>
+    <pre className="bg-bg-secondary border border-border rounded-lg p-4 mb-4 overflow-x-auto text-sm font-mono text-text-primary">
+      {children}
     </pre>
   ),
   img: ({ src, alt }) => (
@@ -78,10 +76,11 @@ export const mdxComponents: MDXComponents = {
       <img
         src={src}
         alt={alt}
-        className="rounded-lg border border-border max-w-full"
+        className="rounded-lg border border-border"
+        style={{ maxWidth: '375px', maxHeight: '500px', objectFit: 'contain' }}
       />
       {alt && (
-        <figcaption className="text-center text-sm text-text-tertiary mt-2">
+        <figcaption className="text-center text-sm text-text-tertiary mt-2" style={{ maxWidth: '375px' }}>
           {alt}
         </figcaption>
       )}

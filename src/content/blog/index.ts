@@ -2,7 +2,7 @@ import ImitationLearning, { frontmatter as imitationFrontmatter } from './Imitat
 
 export const blogPosts = [
   {
-    slug: '',
+    slug: 'imitation-learning',
     Component: ImitationLearning,
     ...imitationFrontmatter
   }

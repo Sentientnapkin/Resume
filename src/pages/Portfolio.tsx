@@ -181,7 +181,7 @@ const Portfolio: React.FC = () => {
             <p className="text-text-secondary">Thoughts</p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8 mb-12">
             {blogPosts.map((post, index) => (
               <BlogCard key={post.slug} post={post} index={index} />
             ))}

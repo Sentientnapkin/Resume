@@ -21,6 +21,32 @@ export interface WorkEntry {
 // Merges professional experiences with major projects
 export const featuredWork: WorkEntry[] = [
   {
+    id: 'google-internship-2026',
+    title: 'Incoming Software Engineer Intern @ Google',
+    type: 'Software Engineering • Internship',
+    date: 'Summer 2026',
+    location: 'TBD',
+    description: 'Incoming software engineer intern for Summer 2026 (May - August).',
+    tags: ['Software Engineering', 'Google'],
+    links: {}
+  },
+  {
+    id: 'lerobot-dataset-viz',
+    title: 'LeRobot Dataset Visualizer',
+    type: 'Robotics • Developer Tool',
+    date: '2026',
+    description: 'Built an interactive dataset visualization tool for LeRobot imitation learning datasets. Enables researchers to explore and analyze robot demonstration data, inspect episode trajectories, and validate training data quality before model training.',
+    impact: [
+      'Interactive exploration of robot demonstration datasets',
+      'Episode trajectory visualization and analysis',
+      'Training data quality validation'
+    ],
+    tags: ['Streamlit', 'Python', 'LeRobot', 'Robotics', 'Data Visualization', 'Imitation Learning'],
+    links: {
+      live: 'https://lerobotdataseteval.streamlit.app/'
+    }
+  },
+  {
     id: 'regwatch-ai',
     title: 'RegWatch AI @ NextEra Energy',
     type: 'Enterprise AI • Technical PM',
@@ -259,8 +285,8 @@ export const researchFocus = [
 
 // STATS for hero section
 export const stats = {
-  internships: 6,
-  projects: 8,
+  internships: 7,
+  projects: 9,
   focus: 'VLA Robotics & Systems'
 };
 

@@ -1,0 +1,111 @@
+import { BlogVideo } from '../../components/BlogVideo'
+
+export const frontmatter = {
+  title: 'Trying a new ACT task and Dataset Vizualizer',
+  date: 'January 17, 2026',
+  summary: 'Making stacking work with ACT models',
+  tags: ['Robotics', 'ACT', 'Imitation Learning'],
+  readTime: '3 min read'
+}
+
+### Stacking
+
+For this problem I wanted to make stacking two blocks on a center target be my goal. I decided it was more fun than just pick and place and would let me do something a little more difficult since the two varying locations of smaller objects makes this task pretty difficult. 
+
+So, I took in everything I learned from the pick and place problem and I adapted it here. I stuck to simple backgrounds to minimize distractions, I taped the specific locations for my cameras so that they were more exact, I trained 270 episodes of data, and I systematically created a 3 x 4 grid on the surface I was using and multiple times over used every combination of two blocks that I could. 
+
+I also varied some of the lightings just to get more variety in, and halfway through the training I introduced image transforms to add more variety into the data.
+
+Here are some training videos that were used:
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_2" />
+  </div>
+</div>
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_2_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_2_2" />
+  </div>
+</div>
+
+I had some time to kill while I waited for the model to train so I decided that there had to be a better way to go about checking if your dataset was valid enough on low cost hardware other than waiting for hours for this to finish, and I realized that really what was being evaluated was the data. So, I built this [dashboard](https://lerobotdataseteval.streamlit.app/) to actually go ahead and analyze the robot data. It's pretty cool and you can check it out but it's just a cool side project I worked on while my model trained. 
+
+<BlogImage src="blog/DatasetEval_1.png" alt="Dataset Evaluation 1" />
+<BlogImage src="blog/DatasetEval_2.png" alt="Dataset Evaluation 2" />
+
+While I went about training the model on my Nvidia 3070 GPU I realized that when I went to 150k steps, which was reccomended with the size of dataset being so large, I was only getting 2.5 epochs. Now the loss function was still pretty low, but over days I kept training to get closer to 7-8 epochs. Now this seems pretty trivial, just train more - but at the same, running 150k steps on my  3070 took 12 hours, so it wasn't for a whole day that I could see the fruits of my trainig. In the end, going from 300k steps to 600k steps, ~5 to 10 epochs for reference, only moderately made the model work faster and more effectively, but it didn't end up changing anything in the long term.
+
+In the end the model worked ok across all sorts of variables, and when I recorded eval data with 100 action steps without temporal ensemble my results were:
+
+Training Scenarios: 8/20
+New Scenarios: 1/5
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_1_2" />
+  </div>
+</div>
+
+I will say, although it struggled a lot at getting two blocks on top of eachother in the middle from scratch, I tested the ability to just lift up one object and place it on top of the other object in the middle and I got these results:
+
+Training Scenarios: 15/20
+New Scenarios: 3/5
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_2_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_2_2" />
+  </div>
+</div>
+
+So the difficulty of the task was a major limiter for this assignment, and although I can't say for certain I think that the ACT model might have met its match here, but it's always possible that all sorts of other variables in my amateur training dataset were really what got in the way of this model working at its best. 
+
+I did continue to experiment with the model though, and I started working with the number of action steps that the ACT model was predicting. The default is 100, but I found myself seeing that it would overshoot and fail to correct itself, so I went about trying some smalelr numbers.
+
+When I tried 25 action steps, it worked alright and definitely had the ability to find the objects and place them in the center, but this model struggled when it missed and didn't know how to get out of a whole. Oftentimes it would miss by a little bit and enter an infinite loop on one spot on the table. My hypothesis here is that, by not allowing the model to look so many steps ahead, it can't find a way to escape the loop in an appropriate amount of steps before the model sends itself back to the same thing it thought it saw before. Because of this, the solution had to be to find a large enough number of action steps that would allow the model to exit these loops.
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_3_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_3_2" />
+  </div>
+</div>
+
+I found that my sweet spot was definitely more in the 50 action steps range, as it allowed the model to fine tune its actions in situations where it needed to but it was moderately efficient and never got stuck in the same loops as before. In the future with ACT models I will definitely play with the amount of steps to figure this out. 
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_4_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_4_2" />
+  </div>
+</div>
+
+Oh also I tried some temporal ensemble but it had issues with too-quick of movements making the robot struggle. 
+
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_5_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Eval_5_2" />
+  </div>
+</div>
+
+I think my next step is to try and figure out the best way to use the GPU cluster I found out my friend has access to and try training a more advance Pi0 model that would allow me to complete more difficult tasks. I will continue to update this page as I do more but I'm having a blast so far!

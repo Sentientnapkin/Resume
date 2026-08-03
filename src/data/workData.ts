@@ -22,29 +22,46 @@ export interface WorkEntry {
 export const featuredWork: WorkEntry[] = [
   {
     id: 'google-internship-2026',
-    title: 'Incoming Software Engineer Intern @ Google',
+    title: 'Software Engineer Intern @ Google',
     type: 'Software Engineering • Internship',
     date: 'Summer 2026',
-    location: 'TBD',
+    location: 'San Jose, CA',
     description: 'Incoming software engineer intern for Summer 2026 (May - August).',
     tags: ['Software Engineering', 'Google'],
     links: {}
   },
   {
-    id: 'lerobot-dataset-viz',
-    title: 'LeRobot Dataset Visualizer',
-    type: 'Robotics • Developer Tool',
-    date: '2026',
-    description: 'Built an interactive dataset visualization tool for LeRobot imitation learning datasets. Enables researchers to explore and analyze robot demonstration data, inspect episode trajectories, and validate training data quality before model training.',
-    impact: [
-      'Interactive exploration of robot demonstration datasets',
-      'Episode trajectory visualization and analysis',
-      'Training data quality validation'
-    ],
-    tags: ['Streamlit', 'Python', 'LeRobot', 'Robotics', 'Data Visualization', 'Imitation Learning'],
+    id: 'rl-residual-project',
+    title: 'Residual RL Post-Training on Vision-Language-Action Models',
+    type: 'Personal Project',
+    date: 'Summer 2026',
+    description: 'Fine-tuned a 450M-param VLA (SmolVLA) on self-collected data, designed a residual RL system (SAC) on top of the frozen policy. Built a staged 4-class reward classifier (dual ResNet-18 + MLP head) to replace binary labeling, improving held-out accuracy 74.3%→82.5% and cutting calibrated NLL 24% via temperature scaling. Re-engineered HuggingFace\'s HIL-SERL infra to support residual RL on a frozen VLA rather than learning from scratch, bridging joint-space VLA outputs and Cartesian-delta RL actions via forward kinematics.',
+    tags: ['Robotics', 'RL'],
     links: {
-      live: 'https://lerobotdataseteval.streamlit.app/'
+      live: 'https://www.sebastianvar.com/blog/rl-posttraining'
     }
+  },
+  {
+    id: 'tiltrotor-uav-control',
+    title: 'Tiltrotor UAV Control',
+    type: 'In-Course Project',
+    date: 'Spring 2026',
+    location: 'Berkeley, CA',
+    description: 'Implemented and tested custom control loops in simulation for overactuated tiltrotor drone verifying full SE(3) capabilities. Wrote ROS2 nodes and updated PX4 firmware to enable drone allocation matrix to properly identify physical geometry for flight.',
+    tags: ['Robotics', 'Simulation'],
+    links: {
+      live: 'https://sites.google.com/berkeley.edu/tiltrotor-uav-control/home'
+    }
+  },
+  {
+    id: '162-project-work',
+    title: 'Operating Systems Coursework Projects',
+    type: 'In-Course Project',
+    date: 'Spring 2026',
+    location: 'Berkeley, CA',
+    description: 'Built Pintos OS kernel in a team of 4: syscall interface, priority-based thread scheduler, cached extensible file system with indirect/double-indirect addressing. Also implemented Raft consensus and MapReduce in Rust.',
+    tags: ['Systems', 'Coursework'],
+    links: {}
   },
   {
     id: 'regwatch-ai',
@@ -63,7 +80,7 @@ export const featuredWork: WorkEntry[] = [
   },
   {
     id: 'google-internship',
-    title: 'Performance Management Platform @ Google',
+    title: 'STEP Intern @ Google',
     type: 'Full-Stack Engineering • Internship',
     date: 'Summer 2025',
     location: 'New York',
@@ -91,6 +108,42 @@ export const featuredWork: WorkEntry[] = [
     tags: ['React', 'Azure Functions', 'SQL', 'TypeScript', 'SPA'],
     links: {}
   },
+];
+
+// MORE PROJECTS - Secondary portfolio pieces
+export const moreProjects: WorkEntry[] = [
+
+  {
+    id: 'lerobot-dataset-viz',
+    title: 'LeRobot Dataset Visualizer',
+    type: 'Robotics • Developer Tool',
+    date: '2026',
+    description: 'Built an interactive dataset visualization tool for LeRobot imitation learning datasets. Enables researchers to explore and analyze robot demonstration data, inspect episode trajectories, and validate training data quality before model training.',
+    impact: [
+      'Interactive exploration of robot demonstration datasets',
+      'Episode trajectory visualization and analysis',
+      'Training data quality validation'
+    ],
+    tags: ['Streamlit', 'Python', 'LeRobot', 'Robotics', 'Data Visualization', 'Imitation Learning'],
+    links: {
+      live: 'https://lerobotdataseteval.streamlit.app/'
+    }
+  },
+  {
+    id: 'lenovo-contract',
+    title: 'AI Development Methodology @ Lenovo',
+    type: 'Research • Contract',
+    date: 'Spring 2025',
+    location: 'Morrisville',
+    description: 'Led cross-functional case study evaluating AI integration in software development. Demonstrated 40% productivity improvement with hybrid AI-assisted approach. Maintained oversight across 3 core features over 12-week development cycle.',
+    impact: [
+      'Led cross-functional case study on AI-assisted development',
+      'Demonstrated 40% productivity improvement with hybrid approach',
+      'Maintained oversight across 3 core features over 12 weeks'
+    ],
+    tags: ['AI Tooling', 'Development Workflow', 'Research', 'Case Study'],
+    links: {}
+  },
   {
     id: 'risc-v-cpu',
     title: 'RISC-V CPU Design',
@@ -116,21 +169,6 @@ export const featuredWork: WorkEntry[] = [
     links: {}
   },
   {
-    id: 'lenovo-contract',
-    title: 'AI Development Methodology @ Lenovo',
-    type: 'Research • Contract',
-    date: 'Spring 2025',
-    location: 'Morrisville',
-    description: 'Led cross-functional case study evaluating AI integration in software development. Demonstrated 40% productivity improvement with hybrid AI-assisted approach. Maintained oversight across 3 core features over 12-week development cycle.',
-    impact: [
-      'Led cross-functional case study on AI-assisted development',
-      'Demonstrated 40% productivity improvement with hybrid approach',
-      'Maintained oversight across 3 core features over 12 weeks'
-    ],
-    tags: ['AI Tooling', 'Development Workflow', 'Research', 'Case Study'],
-    links: {}
-  },
-  {
     id: 'cs61classify',
     title: 'CS61Classify',
     type: 'Low-Level ML • Academic Project',
@@ -138,11 +176,7 @@ export const featuredWork: WorkEntry[] = [
     description: 'ML classifier written entirely in RISC-V assembly for handwritten digit recognition. Implemented matrix multiplication, ReLU activation, and argmax in assembly. Optimized calling conventions and register allocation for performance.',
     tags: ['RISC-V Assembly', 'ML', 'Optimization', 'Low-Level Programming'],
     links: {}
-  }
-];
-
-// MORE PROJECTS - Secondary portfolio pieces
-export const moreProjects: WorkEntry[] = [
+  },
   {
     id: 'resourcify',
     title: 'Resourcify',
@@ -199,7 +233,7 @@ export const additionalExperiences = [
     location: 'Berkeley',
     description: 'Leading technical consulting projects. Delivered 5 client projects managing 10 technical PMs. Automated sourcing workflows processing 10,000 emails weekly. Pitched AI and automation capabilities to industry firms.',
     details: [
-      'Delivered 5 client projects managing 10 technical PMs',
+      'Delivered 10 client projects managing 10 technical PMs at a time',
       'Automated sourcing workflows processing 10,000 emails weekly',
       'Pitched AI and automation capabilities to industry firms'
     ]
@@ -215,8 +249,8 @@ export const additionalExperiences = [
 
 // SKILLS - Organized by category
 export const skills = {
-  languages: ['Python', 'Java', 'TypeScript', 'C/C++', 'SQL', 'RISC-V'],
-  ml_ai: ['TensorFlow', 'PyTorch', 'RAG', 'Vector DBs'],
+  languages: ['Python', 'Java', 'TypeScript', 'C/C++', 'SQL', 'Rust', 'RISC-V'],
+  robotics_ml: ['ROS 2', 'OpenCV', 'PyTorch', 'RAG', 'Vector DBs', 'LeRobot', 'PX4'],
   web: ['React', 'Node.js', 'Flask', 'Django'],
   cloud_infra: ['AWS', 'Azure', 'GCP', 'Firebase', 'PostgreSQL', 'MongoDB']
 };
@@ -236,12 +270,15 @@ export const education = {
       { code: 'CS 70', name: 'Discrete Math', link: 'https://www.eecs70.org/' },
       { code: 'EECS 120', name: 'Signals & Systems', link: 'https://www2.eecs.berkeley.edu/Courses/EECS120/' },
       { code: 'EECS 16A/B', name: 'Circuits & Devices', link: 'https://eecs16a.org/' },
-      { code: 'CS 61A', name: 'Structure & Interpretation', link: 'https://cs61a.org/' }
+      { code: 'CS 61A', name: 'Structure & Interpretation', link: 'https://cs61a.org/' },
+      { code: 'CS 162', name: 'Operating Systems', link: 'https://cs162.org/' },
+      { code: 'CS 161', name: 'Computer Security', link: 'https://sp26.cs161.org/' },
+      { code: 'CS 194-198', name: 'Networks: Models, Processes & Algorithms', link: 'https://people.eecs.berkeley.edu/~borgs/CS194-198/' }
     ],
     upcoming: [
-      'CS 162 • Operating Systems',
-      'CS 161 • Computer Security',
-      'CS 194-198 • Networks: Models, Processes & Algorithms'
+      'EECS 182 • Deep Neural Networks',
+      'CS 180 • Computer Vision',
+      'EECS 116 • Probabilistic and Learning-Based Navigation for Physical AI'
     ]
   },
   involvement: [
@@ -266,7 +303,7 @@ export const researchFocus = [
   {
     id: 'vla-models',
     title: 'Vision-Language-Action Models',
-    description: 'Working with ACT (Action Chunking Transformer) models in robotics. Bridging perception and robotic control through imitation learning and policy optimization for embodied AI systems.',
+    description: 'Working with robot learning. Bridging perception and robotic control through imitation learning and policy optimization for embodied AI systems.',
     tags: ['VLAs', 'ACT', 'Embodied AI', 'Robotics', 'Imitation Learning']
   },
   {
@@ -283,10 +320,4 @@ export const researchFocus = [
   }
 ];
 
-// STATS for hero section
-export const stats = {
-  internships: 7,
-  projects: 9,
-  focus: 'VLA Robotics & Systems'
-};
 

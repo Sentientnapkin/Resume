@@ -1,0 +1,15 @@
+import { BlogVideo } from '../../components/BlogVideo'
+
+export const frontmatter = {
+  title: 'Experimenting with RL Posttraining on VLAs',
+  date: 'August 3, 2026',
+  summary: 'Using RL Posttraining (actor critic, reward classifier) on top of fine tuned SmolVLA',
+  tags: ['Robotics', 'VLA', 'RL'],
+  readTime: '10 min read'
+}
+
+The background for this personal project comes from the huge wave of people emphasizing posttraining as a super important part of robot learning, so I wanted to go ahead and see what it was about. 
+
+I also wanted to go about fine-tuning a VLA model, so I went ahead and trained a SmolVLA model given that I would probably run into issues with inference on my personal computer. I chose SmolVLA over π0 due to the amount of parameters, but in an ideal world I would have loved to work with the physical intelligence models as well. 
+
+### Task: Pipe Threading

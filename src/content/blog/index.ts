@@ -1,8 +1,14 @@
 import ImitationLearning, { frontmatter as imitationFrontmatter } from './ImitationLearning.mdx'
 import ACT_1, { frontmatter as act1Frontmatter } from './ACT_1.mdx'
 import ACT_2, { frontmatter as act2Frontmatter } from './ACT_2.mdx'
+import RL_PROJECT, { frontmatter as rlProjectFrontMatter } from './RL_PRPOJECT.mdx'
 
 export const blogPosts = [
+  {
+    slug: 'rl-posttraining',
+    Component: RL_PROJECT,
+    ...rlProjectFrontMatter
+  },
   {
     slug: 'act-2',
     Component: ACT_2,

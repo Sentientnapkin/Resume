@@ -372,13 +372,13 @@ const Portfolio: React.FC = () => {
                 </div>
               </div>
 
-              {/* ML/AI */}
+              {/* Robotics/ML */}
               <div>
                 <h4 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-4">
-                  ML/AI
+                  Robotics/ML
                 </h4>
                 <div className="space-y-2">
-                  {skills.ml_ai.map((skill) => (
+                  {skills.robotics_ml.map((skill) => (
                     <div key={skill} className="flex items-center gap-3">
                       <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
                       <span className="text-text-secondary font-mono text-sm">{skill}</span>
@@ -448,7 +448,7 @@ const Portfolio: React.FC = () => {
               <div>
                 <p className="font-mono text-sm text-text-tertiary mb-1">Email</p>
                 <p className="text-text-primary group-hover:text-accent transition-colors">
-                  sebastian.vargas@berkeley.edu
+                  18sebvargas@gmail.com
                 </p>
               </div>
             </a>

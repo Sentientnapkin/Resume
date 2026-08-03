@@ -18,3 +18,93 @@ At first I wanted to do threading a nut onto a bolt, thinking about a sort of as
 
 What I wasn't prepared for was how against the actual threading the robot was, the angles had to be too exact and I frankly was not able to twist it on properly during teleop. Because of this I decided that I would stick to a less long-horizon task with my limited resources of of placing the pipe onto the threaded pipe in a position where it could then be threaded on by some other device. 
 
+For my hardware, I am using an SO-101 with follower and leader arms, two USB cameras recording at 640x480 at 30fps, and I'm using an NVIDIA 3070 GPU, although I have a seperate GPU cluster I use for training.
+
+My software stack is built on top of LeRobot, where I use SmolVLA, a lot of the infra from HIL-SERL actor/learner, and SAC. 
+
+### Demos and Base Policy Fine tuning
+
+I created a dataset with 110 episodes of placing the pipe appropriately, which mostly looked like this:
+
+TODO: fix
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_2" />
+  </div>
+</div>
+
+I emphasized a consistent background, setup, and everything so the emphasis was on the finer motions of the robot. 
+
+I then fine-tuned SmolVLA on this dataset overnight, and I ran inference on it for 19 episodes which you can see here: [Link Text](https://huggingface.co/datasets/SentientNapkin/eval_nut_threading)
+
+We ended up with a success rate over the 19 episodes of 52.6%, really not so bad given the limited effort put into it. 
+
+TODO: fix
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_2" />
+  </div>
+</div>
+
+As you can see in the above, its incredibly confident in distrubution, but the issues tend to arise when we get into situations where the robot has to go further than it wants to, or awkwardly in front of it, or when it has difficulty with precise movements getting the pipe threaded on.
+
+TODO: fix
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_2" />
+  </div>
+</div>
+
+TODO: fix
+<div style={{display: 'flex'}}>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_1" />
+  </div>
+  <div style={{flex: 1, padding: '0px 5px'}}>
+    <BlogVideo src="blog/Stack_Training_1_2" />
+  </div>
+</div>
+
+These dilemmas seemed attached to approach and precision, so it seemed like a great place to introduce RL in order to nudge the policy in the right directions.
+
+### Reward classifier
+
+I started by wanting to create a reward function for this project. One of the biggest obstacles was knowing whether the robot had actually made clean contact in the appropriate place in order to lift the pipe, given its circular nature. To do so, I outlined 4 stages: no contact, partial contact, secure contact, and pipe threaded. 
+
+For starters in the pipeline, I went and manually classified 800 image pairs from the eval dataset. At first I had a lot less, since the frames between the two cameras were a little off. I wrote a script that parsed through the mp4's of the videos and matched frames for unpaired frames to bolster the amount of data in the dataset before continuing. 
+
+The model is built off of two ResNet18 models that serve as image classifiers for each image in a pair, which is then passed into an MLP that outputs a distribution over our output values. 
+
+I also created two modes for training, one where I froze the underlying ResNet model weights and one where I unfroze the last layer of the of each ResNet to compare the two strategies. 
+
+Because of some imbalance in our data, I capped each class at 100 per class, and then I grouped over episodes of data and decided on a 5-fold training split with 3 different seeds. For each data point, I only looked at the prediction from when that fold was in the validation set, not the training set. Pooling this across all folds gave us a more honest model.
+
+We then fit our temperature parameter by running our models and analyzing our NLL and ECE, giving us this final table: 
+
+- Training results:
+
+  |                   | baseline (frozen) | fine-tuned (winner) |
+  |-------------------|-------------------|---------------------|
+  | accuracy          | 74.3%             | **82.5%**           |
+  | NLL (post-temp)   | 0.648             | **0.491**           |
+  | Brier (post-temp) | 0.360             | **0.260**           |
+  | ECE (post-temp)   | 0.042             | 0.035               |
+  | temperature       | 1.02              | 2.31                |
+
+With this classifier, I was confronted with a decision, where in our confusion matrix I noticed that the lines between no contact and marginal contact, as well as the lines between partial contact and strong contact, are really quite marginal. I decided that the point of the model was not to give an exact line between the two, but to reward as we approached a fitted pipe. 
+
+My solution, rather than just taking the argmax over our probability distribution, was to take the expected value. For example, rather than give no reward for when our model is close on the confusion between contact and no contact on the pipe, give something in between to show were still going in the right direction. I specifically wanted to counter noise in our RL training, and so having this classifier take an average helped there.
+
+My code for the classifier can be found here:  [LinkText](https://github.com/Sentientnapkin/autonomous-pipe-threading-reward-classifier)
+
+### Residual RL System Design
+

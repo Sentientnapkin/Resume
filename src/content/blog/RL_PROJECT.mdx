@@ -40,7 +40,7 @@ I emphasized a consistent background, setup, and everything so the emphasis was 
 
 I then fine-tuned SmolVLA on this dataset overnight, and I ran inference on it for 19 episodes which you can see here: [Link Text](https://huggingface.co/datasets/SentientNapkin/eval_nut_threading)
 
-We ended up with a success rate over the 19 episodes of 52.6%, really not so bad given the limited effort put into it. 
+Iended up with a success rate over the 19 episodes of 52.6%, really not so bad given the limited effort put into it. 
 
 TODO: fix
 <div style={{display: 'flex'}}>
@@ -52,7 +52,7 @@ TODO: fix
   </div>
 </div>
 
-As you can see in the above, its incredibly confident in distrubution, but the issues tend to arise when we get into situations where the robot has to go further than it wants to, or awkwardly in front of it, or when it has difficulty with precise movements getting the pipe threaded on.
+As you can see in the above, its incredibly confident in distrubution, but the issues tend to arise when Iget into situations where the robot has to go further than it wants to, or awkwardly in front of it, or when it has difficulty with precise movements getting the pipe threaded on.
 
 TODO: fix
 <div style={{display: 'flex'}}>
@@ -82,13 +82,13 @@ I started by wanting to create a reward function for this project. One of the bi
 
 For starters in the pipeline, I went and manually classified 800 image pairs from the eval dataset. At first I had a lot less, since the frames between the two cameras were a little off. I wrote a script that parsed through the mp4's of the videos and matched frames for unpaired frames to bolster the amount of data in the dataset before continuing. 
 
-The model is built off of two ResNet18 models that serve as image classifiers for each image in a pair, which is then passed into an MLP that outputs a distribution over our output values. 
+The model is built off of two ResNet18 models that serve as image classifiers for each image in a pair, which is then passed into an MLP that outputs a distribution over myoutput values. 
 
 I also created two modes for training, one where I froze the underlying ResNet model weights and one where I unfroze the last layer of the of each ResNet to compare the two strategies. 
 
-Because of some imbalance in our data, I capped each class at 100 per class, and then I grouped over episodes of data and decided on a 5-fold training split with 3 different seeds. For each data point, I only looked at the prediction from when that fold was in the validation set, not the training set. Pooling this across all folds gave us a more honest model.
+Because of some imbalance in mydata, I capped each class at 100 per class, and then I grouped over episodes of data and decided on a 5-fold training split with 3 different seeds. For each data point, I only looked at the prediction from when that fold was in the validation set, not the training set. Pooling this across all folds gave me  a more honest model.
 
-We then fit our temperature parameter by running our models and analyzing our NLL and ECE, giving us this final table: 
+Ithen fit mytemperature parameter by running mymodels and analyzing myNLL and ECE, giving this final table: 
 
 - Training results:
 
@@ -100,11 +100,38 @@ We then fit our temperature parameter by running our models and analyzing our NL
   | ECE (post-temp)   | 0.042             | 0.035               |
   | temperature       | 1.02              | 2.31                |
 
-With this classifier, I was confronted with a decision, where in our confusion matrix I noticed that the lines between no contact and marginal contact, as well as the lines between partial contact and strong contact, are really quite marginal. I decided that the point of the model was not to give an exact line between the two, but to reward as we approached a fitted pipe. 
+With this classifier, I was confronted with a decision, where in my confusion matrix I noticed that the lines between no contact and marginal contact, as well as the lines between partial contact and strong contact, are really quite marginal. I decided that the point of the model was not to give an exact line between the two, but to reward as Iapproached a fitted pipe. 
 
-My solution, rather than just taking the argmax over our probability distribution, was to take the expected value. For example, rather than give no reward for when our model is close on the confusion between contact and no contact on the pipe, give something in between to show were still going in the right direction. I specifically wanted to counter noise in our RL training, and so having this classifier take an average helped there.
+My solution, rather than just taking the argmax over my probability distribution, was to take the expected value. For example, rather than give no reward for when my model is close on the confusion between contact and no contact on the pipe, give something in between to show were still going in the right direction. I specifically wanted to counter noise in my RL training, and so having this classifier take an average helped there.
 
 My code for the classifier can be found here:  [LinkText](https://github.com/Sentientnapkin/autonomous-pipe-threading-reward-classifier)
 
 ### Residual RL System Design
 
+my main rule here for my robot actor that Iwanted to work on was: executed_action = base_action + residual_scale X sac_actor_output
+
+At this point we'd already finished base_action, which would be gathered from calls to my fine tuned VLA. Next came the sac_actor_output. Also worth noting that Ihave set residual_scale here at 0.1 and after some finnicking Idecided it was the best options.
+
+What I found with lerobots HIL-SERL was that it was intended to be built from scratch, and also Ihad some mismatch in terms of my outputs. SmolVLA outputs joint-position targets, whereas the residualRL works in cartesian coordinates. With some forward kinematics and knowledge of my robot arm Iwere able to bridge that gap. Alongside this, the gripper function in lerobots version was simply open and close, which lead to a struggles in training with how specific the gripper movements needed to be to properly grab the pipe in the orientation Iwere grabbing it in.
+
+To fix these I had to build an entire pipeline. This included modifying lerobot's classifier step to be compatible with my reward classifier, and a whole lot of diagnostics scripts especially since I was having some struggles with lerobot-find-joint-limits. Alongside this, I even had some hardware struggles since my SO-101 leader arm had some physical issues I was running into, likely due to struggled with getting my physical limits and also just generally not being in the greatest shape, which meant I had to transition to a gamepad where I also had to update the config to allow for wrist roll movements that I was struggling with.
+
+I then ran into a ton of issues before I was ready to actually start the RL training, as the model wasn't even operating properly.
+
+### ...Debugging
+
+1. As I start training, I get the message "Running at 3.7 FPS instead of the required 10" when I run the actor script. 
+
+2. I had been using the wrong string compared to the dataset vs. the config string, leading to a mismatch in what was going on here. 
+
+3. The RL environment rescales the images to 128x128 down from 640 x 480. This especially sucks since SmolVLA resizes the images to 512x384 and adds a 128 row zero band on the top of the image. The 128x128 gets upsampled for the smolVLA without the band and so were not even feeding it the same information. my solution was to allocate some memory and decouple the image paths so that Iallocate the base view images in a different path than the RL pipeline so Ifeed it the base resolution.
+
+4. SmolVLA predicts 50 chunks ahead at 30fps, but the RL environment wants to run at 10fps, so my entries were super backlogged for my actor learner communication. Isolved this by tripling my stride for my RL environment. 
+
+5. I built a script that pulled frames and ground truth actions from our eval dataset and ran the base policy under the preprocessing variants (e.g. 128x128, 680x480, task string mismatch vs. matching) and found that the task string matching was actually more error inducing than the squash of the image. I went in and found some mislabeled RL training data and updated it accordingly.
+
+6. After testing again and still not really getting much better behavior, I found a huge issue - our inference was running on our desired IK solution, not our actual measured outputs. This lead to huge instability in our system that was creating a ton of oscillation that was screwing with everything. By updating this to our actual values in our system we removed the instability that was causing struggles in our robot movements. 
+
+7. This is the funniest one. I ran the inference like I had previously, and noticed a huge major problem. I had swapped the camera indices... Now I know you what you might be thinking, that's really stupid. And of course you'd be right but alas now all of the genuinely terrible movements make way more sense now. After fixing this and running it again, clearly the movements were now actually working and I could actually train the inference.
+
+8. Welp, it still kind of sucked, and honestly at this point I began to realize that this would probably not be something I could completely fix given unlimited resources. The FPS warning given by the actor here was still flashing, and it meant the robot movements were incredibly jerky, to the point that actually just setting my residual_rate to 0.0 and having the VLA model run was actually worse 

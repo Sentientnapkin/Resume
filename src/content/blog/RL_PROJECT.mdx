@@ -8,7 +8,7 @@ export const frontmatter = {
   readTime: '10 min read'
 }
 
-The background for this personal project comes from the huge wave of people emphasizing posttraining as a super important part of robot learning, so I wanted to go ahead and see what it was about. 
+The background for this personal project comes from the huge wave of people emphasizing post-training as a super important part of robot learning, so I wanted to go ahead and see what it was about. 
 
 I also wanted to go about fine-tuning a VLA model, so I went ahead and trained a SmolVLA model given that I would probably run into issues with inference on my personal computer. I chose SmolVLA over π0 due to the amount of parameters, but in an ideal world I would have loved to work with the physical intelligence models as well. 
 
@@ -26,51 +26,51 @@ My software stack is built on top of LeRobot, where I use SmolVLA, a lot of the 
 
 I created a dataset with 110 episodes of placing the pipe appropriately, which mostly looked like this:
 
-TODO: fix
+
 <div style={{display: 'flex'}}>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_1" />
+    <BlogVideo src="blog/RESIDUAL_RL_1_1" />
   </div>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_2" />
+    <BlogVideo src="blog/RESIDUAL_RL_1_2" />
   </div>
 </div>
 
 I emphasized a consistent background, setup, and everything so the emphasis was on the finer motions of the robot. 
 
-I then fine-tuned SmolVLA on this dataset overnight, and I ran inference on it for 19 episodes which you can see here: [Link Text](https://huggingface.co/datasets/SentientNapkin/eval_nut_threading)
+I then fine-tuned SmolVLA on this dataset overnight, and I ran inference on it for 19 episodes which you can see here: [Eval Dataset](https://huggingface.co/datasets/SentientNapkin/eval_nut_threading)
 
-Iended up with a success rate over the 19 episodes of 52.6%, really not so bad given the limited effort put into it. 
+I ended up with a success rate over the 19 episodes of 52.6%, really not so bad given the limited effort put into it. 
 
-TODO: fix
+
 <div style={{display: 'flex'}}>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_1" />
+    <BlogVideo src="blog/RESIDUAL_RL_2_1" />
   </div>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_2" />
+    <BlogVideo src="blog/RESIDUAL_RL_2_2" />
   </div>
 </div>
 
-As you can see in the above, its incredibly confident in distrubution, but the issues tend to arise when Iget into situations where the robot has to go further than it wants to, or awkwardly in front of it, or when it has difficulty with precise movements getting the pipe threaded on.
+As you can see in the above, its incredibly confident in distrubution, but the issues tend to arise when I get into situations where the robot has to go further than it wants to, or awkwardly in front of it, or when it has difficulty with precise movements getting the pipe threaded on.
 
-TODO: fix
+
 <div style={{display: 'flex'}}>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_1" />
+    <BlogVideo src="blog/RESIDUAL_RL_3_1" />
   </div>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_2" />
+    <BlogVideo src="blog/RESIDUAL_RL_3_2" />
   </div>
 </div>
 
-TODO: fix
+
 <div style={{display: 'flex'}}>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_1" />
+    <BlogVideo src="blog/RESIDUAL_RL_4_1" />
   </div>
   <div style={{flex: 1, padding: '0px 5px'}}>
-    <BlogVideo src="blog/Stack_Training_1_2" />
+    <BlogVideo src="blog/RESIDUAL_RL_4_2" />
   </div>
 </div>
 
@@ -88,9 +88,9 @@ I also created two modes for training, one where I froze the underlying ResNet m
 
 Because of some imbalance in mydata, I capped each class at 100 per class, and then I grouped over episodes of data and decided on a 5-fold training split with 3 different seeds. For each data point, I only looked at the prediction from when that fold was in the validation set, not the training set. Pooling this across all folds gave me  a more honest model.
 
-Ithen fit mytemperature parameter by running mymodels and analyzing myNLL and ECE, giving this final table: 
+It hen fit my temperature parameter by running my models and analyzing myNLL and ECE, giving this final table: 
 
-- Training results:
+Training results:
 
   |                   | baseline (frozen) | fine-tuned (winner) |
   |-------------------|-------------------|---------------------|
@@ -104,7 +104,7 @@ With this classifier, I was confronted with a decision, where in my confusion ma
 
 My solution, rather than just taking the argmax over my probability distribution, was to take the expected value. For example, rather than give no reward for when my model is close on the confusion between contact and no contact on the pipe, give something in between to show were still going in the right direction. I specifically wanted to counter noise in my RL training, and so having this classifier take an average helped there.
 
-My code for the classifier can be found here:  [LinkText](https://github.com/Sentientnapkin/autonomous-pipe-threading-reward-classifier)
+My code for the classifier can be found here:  [Classifier Repo](https://github.com/Sentientnapkin/autonomous-pipe-threading-reward-classifier)
 
 ### Residual RL System Design
 
@@ -120,18 +120,42 @@ I then ran into a ton of issues before I was ready to actually start the RL trai
 
 ### ...Debugging
 
-1. As I start training, I get the message "Running at 3.7 FPS instead of the required 10" when I run the actor script. 
+As I start training, I get the message "Running at 3.7 FPS instead of the required 10" when I run the actor script. 
 
-2. I had been using the wrong string compared to the dataset vs. the config string, leading to a mismatch in what was going on here. 
+I had been using the wrong string compared to the dataset vs. the config string, leading to a mismatch in what was going on here. 
 
-3. The RL environment rescales the images to 128x128 down from 640 x 480. This especially sucks since SmolVLA resizes the images to 512x384 and adds a 128 row zero band on the top of the image. The 128x128 gets upsampled for the smolVLA without the band and so were not even feeding it the same information. my solution was to allocate some memory and decouple the image paths so that Iallocate the base view images in a different path than the RL pipeline so Ifeed it the base resolution.
+The RL environment rescales the images to 128x128 down from 640 x 480. This especially sucks since SmolVLA resizes the images to 512x384 and adds a 128 row zero band on the top of the image. The 128x128 gets upsampled for the smolVLA without the band and so were not even feeding it the same information. my solution was to allocate some memory and decouple the image paths so that Iallocate the base view images in a different path than the RL pipeline so Ifeed it the base resolution.
 
-4. SmolVLA predicts 50 chunks ahead at 30fps, but the RL environment wants to run at 10fps, so my entries were super backlogged for my actor learner communication. Isolved this by tripling my stride for my RL environment. 
+SmolVLA predicts 50 chunks ahead at 30fps, but the RL environment wants to run at 10fps, so my entries were super backlogged for my actor learner communication. Isolved this by tripling my stride for my RL environment. 
 
-5. I built a script that pulled frames and ground truth actions from our eval dataset and ran the base policy under the preprocessing variants (e.g. 128x128, 680x480, task string mismatch vs. matching) and found that the task string matching was actually more error inducing than the squash of the image. I went in and found some mislabeled RL training data and updated it accordingly.
+I built a script that pulled frames and ground truth actions from our eval dataset and ran the base policy under the preprocessing variants (e.g. 128x128, 680x480, task string mismatch vs. matching) and found that the task string matching was actually more error inducing than the squash of the image. I went in and found some mislabeled RL training data and updated it accordingly.
 
-6. After testing again and still not really getting much better behavior, I found a huge issue - our inference was running on our desired IK solution, not our actual measured outputs. This lead to huge instability in our system that was creating a ton of oscillation that was screwing with everything. By updating this to our actual values in our system we removed the instability that was causing struggles in our robot movements. 
+After testing again and still not really getting much better behavior, I found a huge issue - our inference was running on our desired IK solution, not our actual measured outputs. This lead to huge instability in our system that was creating a ton of oscillation that was screwing with everything. By updating this to our actual values in our system we removed the instability that was causing struggles in our robot movements. 
 
-7. This is the funniest one. I ran the inference like I had previously, and noticed a huge major problem. I had swapped the camera indices... Now I know you what you might be thinking, that's really stupid. And of course you'd be right but alas now all of the genuinely terrible movements make way more sense now. After fixing this and running it again, clearly the movements were now actually working and I could actually train the inference.
+This is the funniest one. I ran the inference like I had previously, and noticed a huge major problem. I had swapped the camera indices... Now I know you what you might be thinking, that's really stupid. And of course you'd be right but alas now all of the genuinely terrible movements make way more sense now. After fixing this and running it again, clearly the movements were now actually working and I could actually train the inference.
 
-8. Welp, it still kind of sucked, and honestly at this point I began to realize that this would probably not be something I could completely fix given unlimited resources. The FPS warning given by the actor here was still flashing, and it meant the robot movements were incredibly jerky, to the point that actually just setting my residual_rate to 0.0 and having the VLA model run was actually worse 
+Welp, it still kind of sucked, and honestly at this point I began to realize that this would probably not be something I could completely fix given unlimited resources. The FPS warning given by the actor here was still flashing, and it meant the robot movements were incredibly jerky, to the point that actually just setting my residual_rate to 0.0 and having the VLA model run was actually worse. This came down to what seemed to be a hardware restraint.
+
+### The result
+
+At this point, after 20,000 steps of optimization there was no progress on the model, and it was not as strong as the base model. Some issues are the gripper being so bang bang during training, and mainly a throttle on the training throughput from my physical hardware limitations. That being said, there's more to be optimized here and I think with more optimization steps we could get this working on my measly PC. I think a potential idea is to not call the base policy when doing human intervention for potentially smoother data in that section. 
+
+Here's the movements with the controller:
+<BlogVideo src="blog/RL_CONTROLLER" />
+
+And here's the movements on its own:
+<BlogVideo src="blog/RL_RESIDUAL_POLICY" />
+
+
+### Links
+
+Reward classifier repo: https://github.com/Sentientnapkin/autonomous-pipe-threading-reward-classifier
+Residual RL fork/branch: https://github.com/Sentientnapkin/lerobot/tree/residual-rl-pipe-threading
+Fine-tuned base policy: SentientNapkin/smolvla-nut-threading
+Residual SAC checkpoint: SentientNapkin/residual-sac-pipe-threading
+Demo dataset: SentientNapkin/nut-threading
+Eval rollout dataset: SentientNapkin/eval_nut_threading
+
+### Future work
+
+To really optimize this I will need to continue training and see if I can optimize it further with some better test data. I think also a more joint space native design that builds less on what lerobot has would also be pretty nice here. All in all happy with everything that I've learned and I feel more confident about my potential work in the field. 

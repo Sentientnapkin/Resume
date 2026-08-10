@@ -264,19 +264,19 @@ export const education = {
   },
   coursework: {
     completed: [
-      { code: 'CS 170', name: 'Algorithms & Complexity', link: 'https://cs170.org/' },
-      { code: 'CS 61C', name: 'Machine Structures', link: 'https://cs61c.org/' },
-      { code: 'CS 61B', name: 'Data Structures', link: 'https://sp25.datastructur.es/' },
-      { code: 'CS 70', name: 'Discrete Math', link: 'https://www.eecs70.org/' },
-      { code: 'EECS 120', name: 'Signals & Systems', link: 'https://www2.eecs.berkeley.edu/Courses/EECS120/' },
-      { code: 'EECS 16A/B', name: 'Circuits & Devices', link: 'https://eecs16a.org/' },
       { code: 'CS 61A', name: 'Structure & Interpretation', link: 'https://cs61a.org/' },
+      { code: 'CS 61B', name: 'Data Structures', link: 'https://sp25.datastructur.es/' },
+      { code: 'CS 61C', name: 'Machine Structures', link: 'https://cs61c.org/' },
+      { code: 'CS 70', name: 'Discrete Math', link: 'https://www.eecs70.org/' },
+      { code: 'EECS 16A/B', name: 'Circuits & Devices', link: 'https://eecs16a.org/' },
+      { code: 'EE 120', name: 'Signals & Systems', link: 'https://www2.eecs.berkeley.edu/Courses/EECS120/' },
+      { code: 'CS 170', name: 'Algorithms & Complexity', link: 'https://cs170.org/' },
       { code: 'CS 162', name: 'Operating Systems', link: 'https://cs162.org/' },
-      { code: 'CS 161', name: 'Computer Security', link: 'https://sp26.cs161.org/' },
+      { code: 'EECS C106A', name: 'Robotics', link: 'https://www2.eecs.berkeley.edu/Courses/EECSC106A/' },
       { code: 'CS 194-198', name: 'Networks: Models, Processes & Algorithms', link: 'https://people.eecs.berkeley.edu/~borgs/CS194-198/' }
     ],
     upcoming: [
-      'EECS 182 • Deep Neural Networks',
+      'CS C182 • Deep Neural Networks',
       'CS 180 • Computer Vision',
       'EECS 116 • Probabilistic and Learning-Based Navigation for Physical AI'
     ]

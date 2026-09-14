@@ -21,6 +21,16 @@ export interface WorkEntry {
 // Merges professional experiences with major projects
 export const featuredWork: WorkEntry[] = [
   {
+    id: 'msc-lab-research',
+    title: 'Undergraduate Researcher @ UC Berkeley MSC Lab',
+    type: 'Robotics Research • Simulation & Verification',
+    date: 'Sep 2026 - Present',
+    location: 'Berkeley, CA',
+    description: 'Conducting research on physics-based simulation and verification methods for dexterous robotic manipulation systems. Evaluating and extending UniLab for sim-to-real workflows and support across diverse robotic manipulator platforms.',
+    tags: ['Robotics', 'Simulation', 'Sim-to-Real', 'Dexterous Manipulation', 'UniLab'],
+    links: {}
+  },
+  {
     id: 'google-internship-2026',
     title: 'Software Engineer Intern @ Google',
     type: 'Software Engineering • Internship',
@@ -32,16 +42,6 @@ export const featuredWork: WorkEntry[] = [
       'Built a full test suite and supported the launch process'
     ],
     tags: ['Software Engineering', 'Authentication', '2FA', 'Backend', 'Google'],
-    links: {}
-  },
-  {
-    id: 'msc-lab-research',
-    title: 'Undergraduate Researcher @ UC Berkeley MSC Lab',
-    type: 'Robotics Research • Simulation & Verification',
-    date: 'Sep 2026 - Present',
-    location: 'Berkeley, CA',
-    description: 'Conducting research on physics-based simulation and verification methods for dexterous robotic manipulation systems. Evaluating and extending UniLab for sim-to-real workflows and support across diverse robotic manipulator platforms.',
-    tags: ['Robotics', 'Simulation', 'Sim-to-Real', 'Dexterous Manipulation', 'UniLab'],
     links: {}
   },
   {
@@ -66,16 +66,6 @@ export const featuredWork: WorkEntry[] = [
     links: {
       live: 'https://sites.google.com/berkeley.edu/tiltrotor-uav-control/home'
     }
-  },
-  {
-    id: '162-project-work',
-    title: 'Operating Systems Coursework Projects',
-    type: 'In-Course Project',
-    date: 'Spring 2026',
-    location: 'Berkeley, CA',
-    description: 'Built Pintos OS kernel in a team of 4: syscall interface, priority-based thread scheduler, cached extensible file system with indirect/double-indirect addressing. Also implemented Raft consensus and MapReduce in Rust.',
-    tags: ['Systems', 'Coursework'],
-    links: {}
   },
   {
     id: 'regwatch-ai',
@@ -125,7 +115,6 @@ export const featuredWork: WorkEntry[] = [
 
 // MORE PROJECTS - Secondary portfolio pieces
 export const moreProjects: WorkEntry[] = [
-
   {
     id: 'eecs-c106a-content-assistant',
     title: 'EECS C106A Content Assistant @ UC Berkeley',
@@ -138,6 +127,17 @@ export const moreProjects: WorkEntry[] = [
       'Supports programming development and holistic robotics learning for 200+ students'
     ],
     tags: ['Robotics', 'Teaching', 'Curriculum', 'Python'],
+    links: {}
+  },
+
+  {
+    id: '162-project-work',
+    title: 'Operating Systems Coursework Projects',
+    type: 'In-Course Project',
+    date: 'Spring 2026',
+    location: 'Berkeley, CA',
+    description: 'Built Pintos OS kernel in a team of 4: syscall interface, priority-based thread scheduler, cached extensible file system with indirect/double-indirect addressing. Also implemented Raft consensus and MapReduce in Rust.',
+    tags: ['Systems', 'Coursework'],
     links: {}
   },
 
@@ -314,6 +314,13 @@ export const education = {
       description: 'Leading $100K in technical & strategy consulting projects',
       logo: './UpsyncLogo.png',
       link: 'https://www.upsyncberkeley.com/'
+    },
+    {
+      name: 'UC Berkeley EECS C106A',
+      role: 'Content Assistant',
+      description: 'Developing robotics curriculum and supporting 200+ students',
+      logo: './Berkeley.png',
+      link: 'https://www2.eecs.berkeley.edu/Courses/EECSC106A/'
     },
     {
       name: 'Hispanic Engineers and Scientists',

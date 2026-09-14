@@ -5,6 +5,7 @@ import WorkEntry from '../components/WorkEntry';
 import BlogCard from '../components/BlogCard';
 import { featuredWork, moreProjects, skills, education, researchFocus } from '../data/workData';
 import { blogPosts } from '../content/blog';
+import resumePdf from '../assets/Resume.pdf';
 
 const Portfolio: React.FC = () => {
   const [showMoreProjects, setShowMoreProjects] = useState(false);
@@ -511,7 +512,7 @@ const Portfolio: React.FC = () => {
 
             {/* Resume Download */}
             <a
-              href="./Resume.pdf"
+              href={resumePdf}
               download
               className="flex items-center gap-4 p-6 border border-border rounded-lg hover:border-accent transition-all group"
             >

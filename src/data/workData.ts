@@ -24,10 +24,24 @@ export const featuredWork: WorkEntry[] = [
     id: 'google-internship-2026',
     title: 'Software Engineer Intern @ Google',
     type: 'Software Engineering • Internship',
-    date: 'Summer 2026',
+    date: 'May 2026 - Aug 2026',
     location: 'San Jose, CA',
-    description: 'Incoming software engineer intern for Summer 2026 (May - August).',
-    tags: ['Software Engineering', 'Google'],
+    description: 'Developed a novel 2FA method for Google Sign-In that removes barriers and improves successful sign-in rates using SMS systems. Owned the project end-to-end, from research and design through backend integrations, user experience updates, testing, and launch.',
+    impact: [
+      'Collaborated with cross-functional stakeholders to integrate the method into existing 2FA systems',
+      'Built a full test suite and supported the launch process'
+    ],
+    tags: ['Software Engineering', 'Authentication', '2FA', 'Backend', 'Google'],
+    links: {}
+  },
+  {
+    id: 'msc-lab-research',
+    title: 'Undergraduate Researcher @ UC Berkeley MSC Lab',
+    type: 'Robotics Research • Simulation & Verification',
+    date: 'Sep 2026 - Present',
+    location: 'Berkeley, CA',
+    description: 'Conducting research on physics-based simulation and verification methods for dexterous robotic manipulation systems. Evaluating and extending UniLab for sim-to-real workflows and support across diverse robotic manipulator platforms.',
+    tags: ['Robotics', 'Simulation', 'Sim-to-Real', 'Dexterous Manipulation', 'UniLab'],
     links: {}
   },
   {
@@ -67,28 +81,27 @@ export const featuredWork: WorkEntry[] = [
     id: 'regwatch-ai',
     title: 'RegWatch AI @ NextEra Energy',
     type: 'Enterprise AI • Technical PM',
-    date: 'Fall 2025',
-    location: 'Remote',
-    description: 'Architecting regulatory intelligence platform with AWS Bedrock that reduces manual research by 75%. Built RAG AI solution processing 10K+ documents with semantic chunking and vector search. Leading team of 5 engineers across web scraping, ETL pipeline development, vector database architecture, and ML deployment. Owned full project lifecycle from client scoping to delivery.',
+    date: 'Sep 2025 - Jan 2026',
+    location: 'Juno Beach, FL',
+    description: 'Architected Renewables RegWatch, an enterprise RAG solution using AWS Bedrock and Amazon Knowledge Bases to automate regulatory intelligence. Managed a cross-functional team of 5 engineers building web scraping infrastructure, an ETL pipeline, vector database integration, automated PDF reports, and email distribution.',
     impact: [
       '75% reduction in manual research time',
-      'Processing 10,000+ quarterly regulatory documents',
-      'Managing team of 5 engineers across full stack'
+      'Delivered an end-to-end regulatory research and reporting workflow',
+      'Managed a cross-functional team of 5 engineers'
     ],
     tags: ['AWS Bedrock', 'RAG', 'Vector DB', 'Python', 'ETL', 'Team Leadership'],
     links: {}
   },
   {
     id: 'google-internship',
-    title: 'STEP Intern @ Google',
+    title: 'Associate Software Developer Intern @ Google',
     type: 'Full-Stack Engineering • Internship',
-    date: 'Summer 2025',
-    location: 'New York',
-    description: 'Built change history systems for performance management processing 10,000+ quarterly records. Developed APIs and reusable front-end components reducing dev time by 30%. Implemented role-based access control for 150,000+ users.',
+    date: 'May 2025 - Aug 2025',
+    location: 'New York, NY',
+    description: 'Developed change history functionality for Google\'s internal performance management system, processing 10,000+ quarterly records and giving users a complete audit trail for changes to expectations and tasks.',
     impact: [
-      'Developed change history functionality processing 10,000+ quarterly records',
-      'Built APIs and reusable components reducing dev time by 30%',
-      'Implemented RBAC for 150,000+ users'
+      'Built APIs backed by internal datastores and reusable front-end components, reducing development time by 30%',
+      'Designed and deployed OAuth 2.0-based role access controls for 150,000+ users'
     ],
     tags: ['Java', 'React', 'PostgreSQL', 'RBAC', 'APIs'],
     links: {}
@@ -112,6 +125,21 @@ export const featuredWork: WorkEntry[] = [
 
 // MORE PROJECTS - Secondary portfolio pieces
 export const moreProjects: WorkEntry[] = [
+
+  {
+    id: 'eecs-c106a-content-assistant',
+    title: 'EECS C106A Content Assistant @ UC Berkeley',
+    type: 'Robotics Education • Course Staff',
+    date: 'Aug 2026 - Present',
+    location: 'Berkeley, CA',
+    description: 'Collaborating with the head Content TA to develop curriculum, lead weekly homework parties, and grade for Introduction to Robotics, a course serving 200+ students across kinematics, dynamics, controls, computer vision, and sensing.',
+    impact: [
+      'Created robust coding components for 10+ assignments',
+      'Supports programming development and holistic robotics learning for 200+ students'
+    ],
+    tags: ['Robotics', 'Teaching', 'Curriculum', 'Python'],
+    links: {}
+  },
 
   {
     id: 'lerobot-dataset-viz',
@@ -228,14 +256,13 @@ export const additionalExperiences = [
   {
     id: 'upsync',
     title: 'UpSync Consulting',
-    role: 'VP of Projects',
+    role: 'Vice President of Projects',
     date: 'Sep 2025 - Present',
     location: 'Berkeley',
-    description: 'Leading technical consulting projects. Delivered 5 client projects managing 10 technical PMs. Automated sourcing workflows processing 10,000 emails weekly. Pitched AI and automation capabilities to industry firms.',
+    description: 'Leading delivery of 5 client projects valued at $100,000 while managing 12 strategy and technical PMs. Engineered sourcing automation that processes about 10,000 emails weekly and reduces manual effort by 70%.',
     details: [
-      'Delivered 10 client projects managing 10 technical PMs at a time',
-      'Automated sourcing workflows processing 10,000 emails weekly',
-      'Pitched AI and automation capabilities to industry firms'
+      'Built partnerships with professionals at Oracle, Adobe, Pinterest, Fenway Sports Group, and AWS',
+      'Consulted for AMD and Lenovo on full-stack development and AI-assisted workflows, improving productivity by 40%'
     ]
   },
   {
@@ -249,18 +276,18 @@ export const additionalExperiences = [
 
 // SKILLS - Organized by category
 export const skills = {
-  languages: ['Python', 'Java', 'TypeScript', 'C/C++', 'SQL', 'Rust', 'RISC-V'],
-  robotics_ml: ['ROS 2', 'OpenCV', 'PyTorch', 'RAG', 'Vector DBs', 'LeRobot', 'PX4'],
-  web: ['React', 'Node.js', 'Flask', 'Django'],
-  cloud_infra: ['AWS', 'Azure', 'GCP', 'Firebase', 'PostgreSQL', 'MongoDB']
+  languages: ['Python', 'Java/Kotlin', 'JavaScript/TypeScript', 'HTML/CSS', 'C', 'Rust', 'SQL', 'RISC-V'],
+  robotics_ml: ['ROS 2', 'PyTorch', 'OpenCV', 'scikit-learn', 'NumPy/Pandas', 'LeRobot', 'Hugging Face', 'MoveIt', 'PX4'],
+  web: ['React', 'Node.js', 'REST APIs'],
+  cloud_infra: ['AWS Bedrock', 'AWS Knowledge Bases', 'Azure', 'Linux', 'PostgreSQL', 'MongoDB', 'Firebase']
 };
 
 // EDUCATION - Coursework and involvement
 export const education = {
   school: {
     name: 'UC Berkeley',
-    degree: 'Electrical Engineering & Computer Science',
-    statement: 'Navigating the intersection of hardware and software, with a curiosity for how systems work at every level.'
+    degree: 'B.S. Electrical Engineering & Computer Science • Expected May 2028',
+    statement: 'GPA: 4.00/4.00 • Dean\'s List • Honors to Date • Eta Kappa Nu (HKN, EECS)'
   },
   coursework: {
     completed: [
@@ -273,19 +300,18 @@ export const education = {
       { code: 'CS 170', name: 'Algorithms & Complexity', link: 'https://cs170.org/' },
       { code: 'CS 162', name: 'Operating Systems', link: 'https://cs162.org/' },
       { code: 'EECS C106A', name: 'Robotics', link: 'https://www2.eecs.berkeley.edu/Courses/EECSC106A/' },
-      { code: 'CS 194-198', name: 'Networks: Models, Processes & Algorithms', link: 'https://people.eecs.berkeley.edu/~borgs/CS194-198/' }
+      { code: 'CS 194-198', name: 'Networks: Models, Processes & Algorithms', link: 'https://people.eecs.berkeley.edu/~borgs/CS194-198/' },
+      { code: 'CS 182', name: 'Deep Learning', link: 'https://www2.eecs.berkeley.edu/Courses/CS182/' },
+      { code: 'CS 180', name: 'Computer Vision', link: 'https://www2.eecs.berkeley.edu/Courses/CS180/' },
+      { code: 'EECS 116', name: 'Learning-Based Navigation for Physical AI', link: 'https://www2.eecs.berkeley.edu/Courses/EECS116/' }
     ],
-    upcoming: [
-      'CS C182 • Deep Neural Networks',
-      'CS 180 • Computer Vision',
-      'EECS 116 • Probabilistic and Learning-Based Navigation for Physical AI'
-    ]
+    upcoming: []
   },
   involvement: [
     {
       name: 'UpSync Consulting',
       role: 'VP of Projects',
-      description: 'Leading technical & strategy consulting',
+      description: 'Leading $100K in technical & strategy consulting projects',
       logo: './UpsyncLogo.png',
       link: 'https://www.upsyncberkeley.com/'
     },
@@ -319,5 +345,3 @@ export const researchFocus = [
     tags: ['Algorithms', 'Theory', 'Security', 'Complexity']
   }
 ];
-
-

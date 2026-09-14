@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 import WorkEntry from '../components/WorkEntry';
 import BlogCard from '../components/BlogCard';
 import { featuredWork, moreProjects, skills, education, researchFocus } from '../data/workData';
@@ -259,7 +259,7 @@ const Portfolio: React.FC = () => {
             </p>
 
             {/* Coursework */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 gap-12">
               {/* Completed */}
               <div>
                 <h4 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
@@ -290,22 +290,23 @@ const Portfolio: React.FC = () => {
                 </div>
               </div>
 
-              {/* Upcoming */}
-              <div>
-                <h4 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
-                  What's next
-                </h4>
-                <div className="space-y-2">
-                  {education.coursework.upcoming.map((course, i) => (
-                    <div
-                      key={i}
-                      className="py-2 px-4 rounded bg-bg-secondary/30"
-                    >
-                      <span className="text-text-secondary font-mono text-sm">{course}</span>
-                    </div>
-                  ))}
+              {education.coursework.upcoming.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-mono text-text-tertiary uppercase tracking-wider mb-6">
+                    What's next
+                  </h4>
+                  <div className="space-y-2">
+                    {education.coursework.upcoming.map((course, i) => (
+                      <div
+                        key={i}
+                        className="py-2 px-4 rounded bg-bg-secondary/30"
+                      >
+                        <span className="text-text-secondary font-mono text-sm">{course}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Involvement */}
@@ -441,7 +442,7 @@ const Portfolio: React.FC = () => {
           >
             {/* Email */}
             <a
-              href="mailto:sebastian.vargas@berkeley.edu"
+              href="mailto:18sebvargas@gmail.com"
               className="flex items-center gap-4 p-6 border border-border rounded-lg hover:border-accent transition-all group"
             >
               <FaEnvelope className="text-2xl text-accent" />
@@ -469,9 +470,32 @@ const Portfolio: React.FC = () => {
               </div>
             </a>
 
+            {/* Phone */}
+            <a
+              href="tel:+19257898696"
+              className="flex items-center gap-4 p-6 border border-border rounded-lg hover:border-accent transition-all group"
+            >
+              <FaPhone className="text-2xl text-accent" />
+              <div>
+                <p className="font-mono text-sm text-text-tertiary mb-1">Phone</p>
+                <p className="text-text-primary group-hover:text-accent transition-colors">
+                  (925) 789-8696
+                </p>
+              </div>
+            </a>
+
+            {/* Location */}
+            <div className="flex items-center gap-4 p-6 border border-border rounded-lg">
+              <FaMapMarkerAlt className="text-2xl text-accent" />
+              <div>
+                <p className="font-mono text-sm text-text-tertiary mb-1">Location</p>
+                <p className="text-text-primary">Berkeley, CA</p>
+              </div>
+            </div>
+
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/sebastian-vargas-/"
+              href="https://www.linkedin.com/in/sebastianvargas18"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-6 border border-border rounded-lg hover:border-accent transition-all group"

@@ -131,6 +131,23 @@ export const moreProjects: WorkEntry[] = [
   },
 
   {
+    id: 'cs180-flow-models',
+    title: 'Fun with Flow Models',
+    type: 'Computer Vision • Academic Project',
+    date: 'Fall 2026',
+    location: 'Berkeley, CA',
+    description: 'Explored flow-based image generation through noisy training inputs, classical and learned denoising, iterative sampling, classifier-free guidance, and prompt-conditioned image editing. Implemented a U-Net from scratch on MNIST, then trained time- and class-conditioned flow models for controlled digit generation.',
+    impact: [
+      'Built and trained unconditional, time-conditioned, and class-conditioned U-Net architectures',
+      'Evaluated generation quality across denoising, sampling, guidance, and hybrid-image experiments'
+    ],
+    tags: ['Computer Vision', 'Flow Models', 'U-Net', 'MNIST', 'Generative AI'],
+    links: {
+      live: 'https://sentientnapkin.github.io/cs180_project_portfolio/projects/proj3'
+    }
+  },
+
+  {
     id: '162-project-work',
     title: 'Operating Systems Coursework Projects',
     type: 'In-Course Project',
